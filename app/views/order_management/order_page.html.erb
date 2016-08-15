@@ -1,0 +1,47 @@
+  <%= create_dialog_settings("Place Order", "600", "250") %>
+
+
+<div class="order-title">
+    enter quantities:
+    <div class="order-title-line">
+    </div>
+</div>
+
+<% if product_has_inventory?(@product) then  %>
+
+  <div id="product-sizes">
+    <% @product_size_array.each_with_index do |each_item, counter|  %>
+      <div id="size-name" class="hidden-item"><%=each_item%></div>
+      <div class="column"> <%=each_item%></div>
+    <% end %>
+</div>
+<%=form_tag({controller: "order_management", action: "add_to_order", method: "get"}, {:id=>"size-color-form", :class=> "nifty_form"}) do %>
+  <%=hidden_field_tag("product_id", @product.id) %>
+
+  <div id="product-size-color">
+      <div id="product-size-color-items">
+          <% @product_colors.each_with_index do |color, index| %>
+            <div class="row">
+                <div class="row-title"><%=color.color%></div>
+                <% @product_size_array.each_with_index do |each_item, counter|  %>
+                  <div class="product-size-color-item">
+                      <div class="column">  <%=text_field_tag("color_size[" +color.color.gsub(" ","2z1AaA1z2").gsub("-","0a0") + "_" + each_item.gsub("-","a")+ "]", "0")   %></div>
+                  </div>
+                <% end %>
+            </div>
+          <% end %>
+      </div>
+</div>
+
+    <%= link_to("Add to Order","#",{class: "order-button", id: "order-button"})%>
+    
+      <% end %>
+
+
+<% else %>
+
+<br><br>
+
+<center><h1>Sorry, No inventory availabe for this product, please contact our sales department.</h1></center>
+
+<% end %>

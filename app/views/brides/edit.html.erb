@@ -1,0 +1,29 @@
+<div class="hidden-item">
+    <div id="as_window"><%=params[:request_type]=="window"%></div>
+    <div id="dialog-height">650</div>
+    <div id="dialog-width">1050</div>
+    <div id="dialog-name">Edit Bride</div>
+</div>
+
+<%=  bride_info(@bride) %>
+
+<div id="bride-tabs">
+    <ul>
+        <li><a href="#information-tab">Information</a></li>
+        <li><a href="#products-tab">Products</a></li>
+    </ul>
+    <div id="information-tab">
+        <div class="cms-content">
+            <%= render 'form' %>
+        </div>
+    </div>
+
+    <div id="products-tab">
+        <div class="cms-content">
+            <div id="product-gift">
+                <%= render :partial=>"gift_section" %>
+            </div>
+        </div>
+    </div>
+</div>
+

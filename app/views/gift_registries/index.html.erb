@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Gift Registries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Bride</th>
+      <th>Product</th>
+      <th>Quantity requested</th>
+      <th>Quantity reserved</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gift_registries.each do |gift_registry| %>
+      <tr>
+        <td><%= gift_registry.id %></td>
+        <td><%= gift_registry.bride_id %></td>
+        <td><%= gift_registry.product_id %></td>
+        <td><%= gift_registry.quantity_requested %></td>
+        <td><%= gift_registry.quantity_reserved %></td>
+        <td><%= link_to 'Show', gift_registry %></td>
+        <td><%= link_to 'Edit', edit_gift_registry_path(gift_registry) %></td>
+        <td><%= link_to 'Destroy', gift_registry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gift registry', new_gift_registry_path %>

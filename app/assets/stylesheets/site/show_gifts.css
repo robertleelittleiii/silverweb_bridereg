@@ -1,0 +1,221 @@
+/* 
+    Document   : show_gifts
+    Created on : Apr 19, 2013, 4:27:13 PM
+    Author     : rlittle
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+/*div#content {
+position: relative;
+display: inline-block;
+margin-top: 0px;
+min-height: 475px;
+width: 725px	9;
+width: 725px;
+float: right;
+}*/
+
+div#show-gifts-page {
+    padding: 0px;
+    margin: auto;
+    margin-top: 50px;
+    width: 1024px;
+}   
+
+div#gift-list {
+    padding: 0px;
+    margin: auto;
+    margin-top: 50px;
+    display: inline-block;
+    width: 100%;
+}
+
+#page-middle-left {
+    position: relative;
+    display: inline-block;
+    float: left;
+    width: 290px;
+}
+
+div.gift-picture {
+    margin: 15px 0px 0px 0px;
+    position: relative;
+}
+
+div.gift-item {
+    border: dotted transparent 1px;
+    width: 235px;
+    display: inline-block;
+    padding-left: 50px;
+    margin: initial;
+    position: relative;
+    padding-right: 50px;
+}
+
+div#edit-product {
+    position: absolute;
+    z-index: 20;
+    width: 32px;
+    height: 32px;
+    MARGIN-TOP: 15px;
+    margin-left: 15px;
+    border-image: initial;
+    cursor: pointer;
+}
+
+div#content.site div.gift-item img.handle {
+    position: absolute;
+    bottom: 0px;
+    left: 45px;
+    top: initial;
+}
+
+ul#left-nav li.top-nav a:hover {
+    color: #1b4d4b;
+}
+
+ul#left-nav li a {
+    color: #42a5a4;
+    font-size: 17px;
+    text-shadow: none;
+    font-weight: normal;
+    text-transform: none;
+    font-family: Chalkduster;
+    text-align: right;
+}
+
+div#section-name {
+    font-family: Chalkduster;
+    color: #42a5a4;
+    font-weight: bold;
+    font-size: 29px;
+    text-decoration: none;
+    text-shadow: none;
+    font-weight: normal;
+    text-transform: none;
+    left: 0px;
+    top: 15px;
+    position: absolute;
+    z-index: 200;
+}
+
+ul#left-nav {
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    margin-left: -46px;
+    margin-top: 100px;
+    bottom: 0px;
+}
+
+li.left-nav-selected {
+    color: #42a5a4;
+    text-decoration:underline;
+    font-size: 17px;
+    text-shadow: none;
+    font-weight: normal;
+    text-transform: none;
+    font-family: Chalkduster;
+    text-align: right;
+}
+
+
+div.available .title, div.reserved .title {
+    width: 160px;
+    background-color: #99a1a0;
+    text-transform: uppercase;
+    color: white;
+    font-size: 12px;
+    padding: 1px;
+    text-align: right;
+    display: inline-block;
+    margin-bottom: 10px;
+
+
+}
+
+div.available .field, div.reserved .field {
+    width: 50px;
+    background-color: #b2c6d0;
+    text-transform: uppercase;
+    color: white;
+    font-size: 12px;
+    padding: 1px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    margin-left: 5px;
+    height: 17px;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+div.available {
+    margin: auto;
+    display: table;
+    position: relative;
+}
+
+div.reserve-block {
+    margin: auto;
+    display: table;
+    position: relative;
+}
+
+
+div.gift-description {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    min-height: 40px;
+}
+
+div.gift-price {    
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    padding-bottom:10px;
+}   
+
+div.gift-float {
+    display: block;
+    margin: auto;
+    overflow: hidden;
+    width: 220px;
+    height: 280px;
+    border: 2px solid #a3bac6;
+}
+
+img.gift-image {
+    width: 220px;
+}
+
+
+div.field div.cms-contentitem div.best_in_place {
+    height: inherit;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+}
+
+div.field div.cms-contentitem {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+div.field div.cms-contentitem div.best_in_place input.best_in_place_adj {
+    width: 30px !important;
+    text-align: center;
+    margin-top: -1px;
+    font-size: 12px;
+}

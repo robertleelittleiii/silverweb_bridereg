@@ -1,0 +1,30 @@
+<div class="hidden-item">
+    <div id="as_window"><%=params[:request_type]=="window"%></div>
+    <div id="dialog-height">650</div>
+    <div id="dialog-width">1050</div>
+    <div id="dialog-name">Bride Manager</div>
+</div>
+
+<%=page_attr_display(nil,"true") %>
+
+<div class="cms-block">
+  <div align="center">
+    <!-- START:flash -->
+    <% if flash[:notice] -%>
+      <div id="notice"><%= flash[:notice] %></div>
+    <% end -%>
+    <!-- END:flash -->
+  </div>
+
+  <div id="site-pref-list">
+   <!-- <h1  class="cms-header">Site Brides</h1> -->
+
+     <%=link_to 'New Bride',{ :action=>:create_empty_record,:typeofrecord=>"Bride"}, :class=>"button-link" ,:id=>"new-bride", :remote=>true%>
+   
+    <p>
+      </br>
+      </br>
+    </p>
+      <%=render(:partial=>"bride_data_table") %>
+  </div>
+</div>

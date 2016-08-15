@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 9, 2016, 7:53:19 PM
+    Author     : rlittle
+*/
+
+div#product-sizes {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    padding-left: 160px;
+    padding-top: 20px;
+}
+
+div#product-sizes div.column {
+    display: inline-block;
+    position: relative;
+    padding-left: 0px;
+    text-align: center;
+    width: 75px;
+    padding-bottom: 5px;
+}
+
+div.row-title {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+}
+
+div#product-size-color div.row {
+    display: block;
+    position: relative;
+    padding: 5px;
+}
+
+div.row input {
+    width: 50px;
+    text-align: center;
+}
+
+div.column {
+    width: 75px;
+    vertical-align: middle;
+    align-items: center;
+    margin-right: 0px;
+    padding-right: 0px;
+    text-align: center;
+    margin-left: 0px;
+}
+
+div#product-size {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+div.product-size-color-item {
+    display: inline-block;
+    position: relative;
+    padding-left: 0px;
+}
+
+
+a#order-button {
+    color: white;
+    font-size: 11px;
+    text-decoration: none;
+    font-family: open_sansregular;
+    padding: 5px 10px;
+    background-color: #4d4d4d;
+    border: 1px solid white;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}

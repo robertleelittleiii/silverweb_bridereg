@@ -1,0 +1,6 @@
+    <div class="total-product">
+       Count: <%=@cart.total_items_product(@product) %>
+    </div>
+    <div class="total-product-price">
+       Price: <%=number_to_currency(@cart.total_price_product(@product)) %>
+    </div>

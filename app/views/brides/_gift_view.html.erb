@@ -1,0 +1,29 @@
+
+<%gift=@gift if gift.blank?%>
+
+<div id="gift_<%=gift.id.to_s%>" data-id='product_<%=gift.id.to_s%>' class="product-list-item">
+    <div class="product-delete-icon ui-icon ui-icon-closethick">
+        <%= link_to('X',gift, {method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: 'gift-delete'})%>
+      </div> 
+      <div class="gift-product-item"> 
+
+          <div class="product-title"><%=truncate(gift.product.product_name, length: 12) rescue "product not found"%> 
+
+          </div>
+      </div> 
+
+      <div class="product-block">
+          <div class="gift-item">
+              <%=  product_edit_div(gift.product)%>
+              <div class="gift-float-center">
+                  <%= image_tag(gift.product.pictures.where(:title=>"Product List")[0].blank? ? "empty_s.jpg" : gift.product.pictures.where(:title=>"Product List")[0].image_url(:store_list_freshbetty).to_s,:class=>"product-image") rescue "" %>
+              </div>
+                  <b>Requested:</b>
+                  <%=editablefieldcreate("quantity_requested", gift)%>
+                  <br>
+                  <b>Reserved:</b>
+                  <%=editablefieldcreate("quantity_reserved", gift)%>
+          </div>       
+      </div>
+
+  </div> 

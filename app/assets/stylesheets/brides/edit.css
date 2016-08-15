@@ -1,0 +1,77 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 9, 2016, 4:25:42 PM
+    Author     : rlittle
+*/
+
+/*
+*= require brides/product_list.css
+*/
+
+
+div.gift-product-item {
+    margin-left: 0px;
+    padding: 0PX;
+    border-radius: 0PX;
+    padding-right: 0PX;
+    vertical-align: middle;
+    display: block;
+    position: relative;
+    background-color: darkgray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: -webkit-grab;
+}
+
+
+
+
+div#products-tab div.giftsection {
+    min-height: 400px;
+}
+
+
+div#products-tab {
+    min-height: 500px;
+}
+
+
+a#new-product {
+    float: right;
+    top: -15px;
+}
+
+div.gift-item input.best_in_place_adj {
+    width: 20px !important;
+    overflow:hidden;
+}
+
+div#field_quantity_reserved, div#field_quantity_requested {
+    display: inline;
+    position: relative;
+}
+
+div.product-block b {
+    padding-left: 40px;
+    margin-right: -20px;
+}
+
+
+div.product-block div.data-nil {
+    color: #aaa;
+    font-style: italic;
+    width: 20px;
+    overflow: hidden;
+    height: 13px;
+    vertical-align: inherit;
+}
+
+div#edit-product {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+}

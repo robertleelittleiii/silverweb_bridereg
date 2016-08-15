@@ -1,0 +1,13 @@
+{"draw": <%= params[:draw] || -1 %>,
+ "recordsTotal": <%= @total_objects %>,
+ "recordsFiltered": <%= @total_objects %>,
+ "data":[
+<% @objects.each do |bride| %>
+  [
+   "<%= bride.id%><div id='bride-id' class='hidden-item'><%=bride.id%></div> ",
+   "<%= bride.user.user_attribute.first_name rescue "" %> <%= bride.user.user_attribute.last_name rescue "" %>",
+   "<%= bride.wedding_date rescue "n/a" %>",  
+   "<center><div class='delete-bride-item'><%=image_tag('interface/delete.png', :border=>'0').gsub("\"", "'").html_safe() %></div> </center>"
+  ] <% if @objects.last != bride then %> , <% end %>
+<% end %>
+]}

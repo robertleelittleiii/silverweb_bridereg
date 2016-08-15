@@ -1,0 +1,16 @@
+<div id="product-search-bar">
+                      Add Products: <input id="product-search" />
+                   <%= link_to 'New Product', {:action=>:create_empty_record,:controller=>:gift_registries, :typeofrecord=>"product", :bride_id=>@bride.id}, :class=>"button-link",:id=>"new-product", :remote=>true%>
+
+
+</div>
+<div class="giftsection">
+                 
+          <%= hidden_div_if((@bride.gift_registries.empty?) , :id=>"gift-products") %>
+
+          <%= render(:partial => "gift_list", :object => @bride.gift_registries) %>
+          
+
+          <%="</div>".html_safe %>
+
+      </div> 

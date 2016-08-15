@@ -1,0 +1,89 @@
+
+<%= form_for :order, :url => { :controller=>:order_management, :action => :enter_order } do |form| %>
+  <div class="shipping-address">
+    <div class="address-title">Shipping Address <div id="copy-to-billing" class="windsor-button"><%=link_to "Copy to Billing" ,{},{:href=>"javascript:void();",:onclick=>"return false;", :class=>""}%></div></div>
+
+    <div>
+      <b>Name:</b> </br>
+      <%= form.text_field :ship_first_name , :size => 33 %>  <%= form.text_field :ship_last_name, :size => 32 %>
+    </div>
+
+
+    <div>
+      <b>Street:</b></br>
+      <%= form.text_field :ship_street_1, :rows => 1, :size => 72 %></br>
+      <%= form.text_field :ship_street_2, :rows => 1, :size => 72 %>
+    </div>
+
+
+    <div>
+      <div> 
+        <b>City:</b></br>
+        <%= form.text_field :ship_city , :size => 37 %>
+      </div>
+      <div>
+        <b>State:</b></br> 
+        <%= form.select :ship_state, Order::CC_STATES, :prompt => "Select State"  %> 
+      </div>
+      <div>
+        <b>Zip Code:</b></br> 
+        <%= form.text_field :ship_zip , :size => 6 %>
+      </div>
+    </div>
+
+  </div>    
+
+
+  <div class="billing-address">
+    <div class="address-title">Billing Address</div>
+
+    <div>
+      <b>Name:</b> </br>
+      <%= form.text_field :bill_first_name , :size => 33 %>  <%= form.text_field :bill_last_name, :size => 32 %>
+    </div>
+
+
+    <div>
+      <b>Street:</b></br>
+      <%= form.text_field :bill_street_1, :rows => 1, :size=> 72 %></br>
+      <%= form.text_field :bill_street_2, :rows => 1, :size=> 72 %>
+    </div>
+
+
+  <div>
+      <div> 
+        <b>City:</b></br>
+        <%= form.text_field :bill_city , :size => 37 %>
+      </div>
+      <div>
+        <b>State:</b></br> 
+        <%= form.select :bill_state, Order::CC_STATES, :prompt => "Select State"  %> 
+      </div>
+      <div>
+        <b>Zip Code:</b></br> 
+        <%= form.text_field :bill_zip , :size => 6 %>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+
+  <div class="nav-cart-bottom"> 
+    <div class="nav-cart-left windsor-button">
+      <%=link_to "<< Back to Order" ,request.env['HTTP_REFERER'], {:class=>"navigation-link"} %>
+      <%=link_to "Cancel Order" ,{:action => :empty_cart, :controller=>:site}, {:class=>"navigation-link"} %>
+    </div>
+
+    <div class="nav-cart-right windsor-button">
+      <%= submit_tag "Place Order", {:class => "navigation-link"} %>
+
+  <%#=link_to "Continue to Confirmation >>" ,{:action => :enter_order, :controller=>:orders}, {:class=>"navigation-link"} %>
+    </div>
+
+  </div>
+
+
+  </div>
+<%end %>

@@ -1,0 +1,122 @@
+<div id="attr-pages" class="hidden-item">
+    <div id="full-screen">false</div>
+    <div id="admin-active"><%=  @admin_active=admin_active() || "" %></div>
+    <div id="page_number"><%=@the_page%></div>
+</div>
+
+<div id="show-gifts-page">
+
+    <div id="page-title">
+        Wish List
+    </div>
+
+    <div id="bride-info">
+       <%=bride_edit_div(@bride) %>
+       <div id="first-name" class="bride-info-item">
+            <%=@bride.user.user_attribute.first_name%>
+        </div>
+        <div id="last-name" class="bride-info-item">
+            <%=@bride.user.user_attribute.last_name%>
+
+        </div>
+        <div id="wedding-date" class="bride-info-item">
+            <%=@bride.wedding_date.strftime("%m/%d/%Y") %>
+        </div>
+    </div>
+    <div id="gift-list">
+        <% if  !@gifts.nil? and @gifts.count > 0  then %>
+          <div id="gift-block">
+              <%  @gifts.each_with_index do |gift, counter|  %>
+
+                <% if @admin_active=="false" then %>
+                  <%  if(counter % 4) == 0 %>
+                    <%  if counter  > 1 %>
+                  </div>
+                <% end %>  
+                <div class="gift-row">
+                  <% end %>  
+                <% end %>  
+
+
+                <div class="gift-item" id="gift_<%=gift.id%>">
+                    <%=  product_edit_div(gift.product)%>
+
+                    <div id="item-id" class="hidden-item"><%=gift.product.id%></div>
+    <%#=link_to(gift.product.product_name.html_safe, {:action=>:gift_detail, :id=>gift.id}, :class=>"gift-detail-link") %>
+                    <div class="gift-picture">
+                        <div class="gift-float">
+                            <%= image_tag(gift.product.pictures.where(:active_flag=>true)[0].blank? ? "empty_s.jpg" : gift.product.pictures.where(:active_flag=>true)[0].image_url(:store_list).to_s,:class=>"gift-image") rescue "Server restart required" %>
+                        </div>
+                        <div class="gift-description">
+                            <%=gift.product.product_description%>
+                        </div>
+                        <div class="gift-price">
+                            <%=number_to_currency(gift.product.msrp)%>
+                        </div>
+                        <div class="reserve-block">
+
+                            <div class="available">
+                                <div class="title">
+                                    Quantity Avalilable
+                                </div>
+                                <div class="field">
+                                    <%=gift.quantity_left.to_i || "0" rescue 0%>
+                                </div>
+                            </div>
+                            <div class="reserved">
+                                <div class="title">
+                                    Reserve
+                                </div>
+                                <div class="field">
+                                    <%@found_cart_item = @cart.get_cart_item_color_size_product(gift.product,"n/a","n/a") || CartItem.new(gift.product,gift.product.product_details.first, 0)%>
+
+                                    <%if(!@found_cart_item.blank? )then%>
+                                      <%= editablefieldcreate('quantity', @found_cart_item,"0",{:path=>"update_cart_item?product=#{gift.product.id}&gift=#{gift.id}&color=#{gift.product.product_details.first.color}&size=#{gift.product.product_details.first.size}" }) rescue "n/a" %>
+                                    <%else %>
+                                      n/a
+                                    <%end%>
+    <%#=gift.quantity_reserved.to_i || "0" rescue 0%>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+
+    <%#*<div class="gift-name">%>
+    <%#=link_to(gift.gift_name.html_safe, {:action=>:gift_detail, :id=>gift.id}, :class=>"gift-detail-link") %>
+    <%#*</div>%>
+    <%#*<div class="gift-price">%>
+    <%# if gift.discount_available then%>
+    <%#*Save <span id="gift-discount"> <%=gift.discount.to_s + "%" % > </span> : < %=number_to_currency(gift.price) % >%>
+    <%# else %>
+    <%#=number_to_currency(gift.msrp) %>
+    <%#  end %>        
+    <%#*</div>%>
+                    <% if @admin_active=="true" then %>
+                      <%= image_tag("interface/handle.png",:class=>"handle") %>
+                    <% end %>
+                </div>
+              <% end %>
+
+          </div>
+      </div>
+      <div class="pagination-div">  
+          <div class="gift-counts">
+              Showing <%=@gift_first%> to <%=@gift_last%> of <%=@gift_count%>
+          </div>
+          <%=paginate @gifts%>
+      </div>
+  </div>
+
+<%else%>
+  </br>
+  </br>
+  </br>
+  <center>
+      NO PRODUCTS FOUND IN CATEGORY !
+  </center>
+<%end%>
+
+
+<%# console %>
+
+</div>

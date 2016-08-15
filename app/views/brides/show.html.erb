@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @bride.id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bride.user_id %>
+</p>
+
+<p>
+  <strong>Wedding date:</strong>
+  <%= @bride.wedding_date %>
+</p>
+
+<p>
+  <strong>Groom full name:</strong>
+  <%= @bride.groom_full_name %>
+</p>
+
+<%= link_to 'Edit', edit_bride_path(@bride) %> |
+<%= link_to 'Back', brides_path %>

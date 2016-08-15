@@ -1,0 +1,67 @@
+
+
+<p>
+    <b>First Name:</b><br>
+    <%=editablefieldcreate("first_name", @bride.user.user_attribute)%>
+</p>
+
+<p>
+    <b>Last Name:</b><br>
+    <%=editablefieldcreate("last_name", @bride.user.user_attribute)%>
+</p>
+
+<p>
+    <b>Email Address:</b><br>
+    <%=editablefieldcreate("name", @bride.user)%>
+</p>
+
+<p>
+    <b>Password Management:</b><br>
+<div class="button-link" id="password-user-item">Change Password</div>
+<br>    
+</p>
+
+<p>
+    <b>Wedding Date:</b><br>
+    <%=editabledatefieldcreate("wedding_date", @bride ,"01/01/2001", {:format_type=>"date", :format_string=>"%m/%d/%Y"})%>
+</p>
+
+<p>
+    <b>Groom Full Name:</b><br>
+    <%=editablefieldcreate("groom_full_name", @bride)%>
+</p>
+
+
+<%#= form_for(@bride) do |f| %>
+<%# if @bride.errors.any? %>
+<%#*<div id="error_explanation">%>
+<%#*<h2><%= pluralize(@bride.errors.count, "error") % > prohibited this bride from being saved:</h2>%>
+
+<%#*<ul>%>
+<%# @bride.errors.full_messages.each do |message| %>
+<%#*<li><%= message % ></li>%>
+<%# end %>
+<%#*</ul>%>
+<%#*</div>%>
+<%# end %>
+
+<%#*<div class="field">%>
+<%#= f.label :id % ><br>
+<%#= f.number_field :id %>
+<%#*</div>%>
+<%#*<div class="field">%>
+<%#= f.label :user_id % ><br>
+<%#= f.number_field :user_id %>
+<%#*</div>%>
+<%#*<div class="field">%>
+<%#= f.label :wedding_date % ><br>
+<%#= f.date_select :wedding_date %>
+<%#*</div>%>
+<%#*<div class="field">%>
+<%#= f.label :groom_full_name % ><br>
+<%#= f.text_field :groom_full_name %>
+<%#*</div>%>
+<%#*<div class="actions">%>
+<%#= f.submit %>
+<%#*</div>%>
+<%# end %>

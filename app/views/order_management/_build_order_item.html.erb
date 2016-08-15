@@ -1,0 +1,42 @@
+<table class='cart-item' width="970" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td style="text-align: center; text-align: center; width: 87px; padding-right: 30px; ">
+            <%= link_to(image_tag(build_order_item.product_detail.small.to_s,:border=>"0", :align=>"center"), {:action=>:product_detail, :controller=>:site, :id=>build_order_item.product.id},{})%></br>
+            <div class="cart-item-size-color">(<%=h build_order_item.color%>, <%=h build_order_item.size %>)</div>
+
+        </td>
+        <td><table>
+                <tr>
+                    <td class="cart-item-title"><%=link_to h(build_order_item.product.product_name.html_safe), {:action=>:product_detail, :controller=>:site, :id=>build_order_item.product.id},{}%></td>
+                </tr><tr>
+                    <td width="766" class="cart-item-description"><%= truncate(build_order_item.product.product_description.to_s.gsub(/<\/?[^>]+>|(\r\n|\n|\r)|&nbsp;/, ''), :length=>250) %></td>
+                </tr>
+            </table>
+        </td>
+        <td> 
+            <%@build_order_item = build_order_item %>
+            <div class="shopping-cart-item-info">
+                <%= render :partial=>"build_order_item_info" , :locals=>{:build_order_item=>@build_order_item} %>
+            </div>
+        </td>
+        <td>
+            <div id="cart-item-index" class="hidden-item"><%=build_order_item_counter%></div>
+            <div id="increase-item" title="Increase Quantity">
+                <%=link_to("+",{:action=>'increment_cart_item',:controller=>:site, :current_item=>build_order_item_counter},{:title=>"Increase Quantity", :class=>"add-product", :remote=>true})%></br>
+            </div>
+            <div id="decrease-item" title="Decrease Quantity">
+                <%=link_to("-",{:action=>'decrement_cart_item',:controller=>:site, :current_item=>build_order_item_counter }, {:title=>"Decrease Quantity",:class=>"minus-product",:remote=>true})%></br>
+            </div>   
+            <div id="delete-item" title="Delete Item">
+                <%=link_to(image_tag("interface/delete.png", :border => 0, :id=>"delete-icon",  :title=>"Delete Item"),{:action=>'delete_cart_item',:controller=>:site, :current_item=>build_order_item_counter }, {:confirm => "Are you sure?", :class=>"remove-product", :remote=>true})%>
+            </div>
+        </td>
+
+
+    </tr>
+    <tr>
+        <td colspan="5"><hr>
+        </td>
+    </tr>
+</table>
+

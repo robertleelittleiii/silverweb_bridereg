@@ -1,0 +1,8 @@
+
+<%# return if (not defined?(picture_list).nil?) %>
+<% @gifts = gift_list if @gifts.blank? %>
+
+<% @gifts.order(:position).each do |gift| %>
+<% puts("---------->  gift.product: '#{gift.product.product_name}'") %>
+<%= render(:partial=>"gift_view.html" , :locals=>{:gift=>gift})%>
+<% end if not @gifts.blank?%>

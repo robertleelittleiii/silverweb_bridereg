@@ -1,0 +1,40 @@
+<div class="cart-title" >Current Order (in progress)</div>
+    
+<div id="cart-contents">
+    <%#=build_order.get_cart_products.inspect%>
+  <%= render(:partial => "build_product_item" , :collection => build_order.get_cart_products) %>
+</div>
+
+
+<div class="cart-summary-section">
+  <!-- <div class="cart-shipping">
+    <div class="cart-shipping-header cart-header-font ">
+      Shipping
+    </div>
+    <div class="cart-shipping-body">
+      <%#= render :partial=>"shipping_tool.html", :locals=>{:build_order=>@build_order, :shipping_methods=>@shipping_methods} %>
+    </div> 
+  -->
+  </div>
+
+  <div class="cart-summary">
+          <%@build_order = build_order %>
+   <%  if Coupon.active then %>
+    <div class="cart-header-font cart-coupon-header">
+      Coupon Code
+    </div>
+    <div class="cart-coupon-code">
+      <p>
+        <%=editablefieldcreate("coupon_code", @build_order,"Enter Code",{:path=>"cart_update"})%>
+      </p>
+    </div>
+    <% end %>
+   <!-- <div class="cart-summary-header cart-header-font "> 
+      Summary
+    </div> -->
+   
+    <div class="cart-summary-body"> 
+      <%= render :partial=>"order_summary_body.html" , :locals=>{:build_order=>@build_order} %>
+    </div>
+
+  </div>

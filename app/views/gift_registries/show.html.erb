@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @gift_registry.id %>
+</p>
+
+<p>
+  <strong>Bride:</strong>
+  <%= @gift_registry.bride_id %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @gift_registry.product_id %>
+</p>
+
+<p>
+  <strong>Quantity requested:</strong>
+  <%= @gift_registry.quantity_requested %>
+</p>
+
+<p>
+  <strong>Quantity reserved:</strong>
+  <%= @gift_registry.quantity_reserved %>
+</p>
+
+<%= link_to 'Edit', edit_gift_registry_path(@gift_registry) %> |
+<%= link_to 'Back', gift_registries_path %>

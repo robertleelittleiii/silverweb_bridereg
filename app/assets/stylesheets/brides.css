@@ -1,0 +1,15 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+
+div#password-user-item {
+    margin-left: 35px;
+    margin-bottom: 20px;
+}
+
+div#gift-products {
+    display: inline-block;
+    position: relative;
+}

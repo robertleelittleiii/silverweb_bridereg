@@ -1,0 +1,389 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 26, 2016, 11:29:00 PM
+    Author     : rlittle
+*/
+
+div#content.order_management.enter_order div.myaccountblock {
+    background: #f6f9f9;
+    background: -moz-linear-gradient(left, #f6f9f9 0%, #b6cbd0 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, #f6f9f9), color-stop(100%, #b6cbd0));
+    background: -webkit-linear-gradient(left, #f6f9f9 0%, #b6cbd0 100%);
+    background: -o-linear-gradient(left, #f6f9f9 0%, #b6cbd0 100%);
+    background: -ms-linear-gradient(left, #f6f9f9 0%, #b6cbd0 100%);
+    background: linear-gradient(to right, #f6f9f9 0%, #b6cbd0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f9f9', endColorstr='#b6cbd0', GradientType=1 );
+    border: 2px black solid;
+}
+
+div.cart-title {
+    font-size: 25pt !important;
+    color: #244561 !important;
+    text-align: center;
+    height: 65px;
+    padding-top: 20px;
+}
+
+div.nav-cart-bottom {
+    height: 50px;
+    display: inline-block;
+    width: 100%;
+    padding-top: 20px;
+    background-color: #64888f;
+}
+
+div.windsor-button {
+    display: inline-block;
+    position: relative;
+    padding-left: 10px;
+}
+
+div.nav-cart-left.windsor-button {
+    float: left;
+}
+
+div.nav-cart-right.windsor-button {
+    float: right;
+    padding-right: 20px;
+}
+
+div.nav-cart-left.windsor-button {
+    float: left;
+    padding-left: 20px;
+}
+
+/* 
+    Document   : order
+    Created on : May 21, 2012, 9:38:33 PM
+    Author     : rlittle
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+root { 
+    display: block;
+}
+
+
+.shipping-item-row td {
+    border-width: 1px !important;
+}
+
+.billing-address {
+    display: inline-block;
+    width: 44.5%;
+    border: black solid 1px;
+    padding: 10px;
+    margin: 15px;
+}
+.shipping-address {
+    display: inline-block;
+    width: 44.5%;
+    border: black solid 1px;
+    padding: 10px;
+    margin: 15px;
+}
+
+
+
+
+.shipping-address legend {
+    background: lightgray;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+
+
+.shipping-address input  {
+
+    border-right: 1px grey dotted;
+    border-bottom: 1px grey dotted;
+
+}
+
+.shipping-address b {
+    font-size: 14px;
+    font-variant: small-caps;
+}
+
+.address-title {
+    font-size: 15pt;
+    text-align: center;
+    font-weight: bold;
+    font-variant: small-caps;
+    background: #244561;
+    width: 105%;
+    margin-left: -10px;
+    margin-top: -10px;
+    height: 40px;
+    color: white;
+    font-family: 'open_sansbold';
+    display: inline-block;
+    position: relative;
+    line-height: 34px;
+}
+
+div#copy-to-billing {
+    position: absolute;
+    right: 10px;
+    font-variant: normal;
+}
+
+.credit-card-title {
+    font-size:15pt;
+    text-align: center;
+    font-weight: bold;
+    font-variant: small-caps;
+    background: lightGrey;
+    width: 102%;
+    margin-left: -10px;
+    margin-top: -10px;
+    height: 32px;
+    display:block !important;
+
+}
+.billing-address input  {
+
+    border-right: 1px grey dotted;
+    border-bottom: 1px grey dotted;
+
+}
+
+.billing-address b {
+    font-size: 14px;
+    font-variant: small-caps;
+}
+
+.credit-card-info {
+    display: inline-block;
+    width: 97%;
+    border: black solid 1px;
+    padding: 10px;
+    margin-top: 20px;
+    /*padding: 10px;*/
+}
+
+.credit-card-info b {
+    font-size: 14px;
+    font-variant: small-caps;
+}
+
+.credit-card-info div {
+    display: inline-block;
+    margin-right:25px;
+}
+
+.credit-card-info input  {
+
+    border-right: 1px grey dotted;
+    border-bottom: 1px grey dotted;
+
+}
+.cart-title {
+    font-family: sans-serif;
+    text-align: left;
+    font-size: 33pt;
+    padding-left: 10px;
+    font-weight: bolder;
+
+}
+
+
+.nav-cart-bottom {
+
+}
+
+.nav-cart-left {
+    padding-top:5px;
+    padding-left:10px;
+    padding-right:10px;
+
+    float:left;
+}
+
+.nav-cart-right {
+    padding-top:5px;
+    padding-left:10px;
+    padding-right:10px;
+
+    float:right;
+}
+
+div.nav-cart-bottom {
+    height: 50px;
+    display: inline-block;
+    width: 100%;
+    padding-top: 20px;
+    background-color: #64888f;
+    margin-bottom: -5px;
+}
+
+
+
+.field_with_errors {
+    padding: 1px;
+    background-color: red;
+    display: inline-block;}
+
+
+#error_explanation {
+    width: 450px;
+    border: 2px solid red;
+    padding: 7px;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+}
+
+#error_explanation ul li {
+    font-size: 12px;
+    list-style: square;
+    text-align: left;
+}
+
+#invoice-frame {
+    border: black solid 1px;
+    display: inline-block;
+    /*height:480px;*/
+    height: 1200px;
+    overflow: auto;
+    width: 1000px;
+    /*width:400px;*/
+    border-image: initial;
+    margin-top:20px;
+
+}
+
+
+.cart-header {
+    background-color: lightGrey;
+    font-weight: bolder;
+    font-size: 12px;
+    font-variant: small-caps;
+    border: lightgray 3px solid;
+    border-image: initial;
+    height: 35PX;
+}
+
+#invoice-tools {
+    display: inline-block;
+    width: 585px;
+    border: black 1px dotted;
+    height: 480px;
+    border-image: initial;
+    vertical-align: top;
+    margin-top:20px;
+}
+
+.static-field {
+    padding: 5px;
+    border: black 1px dotted;
+    background: white;
+    font-size: larger;
+    color: gray;
+    margin: 3px;
+}
+
+div.name-field, div.address-field {
+    width: 450px;
+}
+
+div.city-field {
+    width: 345px;
+}
+
+
+#zoom-invoice {
+    display: inline-block;
+    margin-right: 848px;
+}
+
+#invoice-tools-title {
+    text-align: center;
+    font-size: 40pt;
+    margin-bottom: 20px;
+    font-family: fantasy;
+    margin-top: 40px;
+    color: #4DA6FF;
+}
+
+#invoice-tools-body {
+    padding: 20px;
+    font-family: serif;
+    font-weight: lighter;
+    line-height: 20pt;
+}
+
+
+
+
+
+div.shipping-address div div {
+    display:inline-block;
+
+}
+
+div.billing-address div div {
+    display:inline-block;
+
+}
+
+
+#copy-to-billing a {
+
+}
+
+#copy-to-billing a:active {
+    padding: 1px 6px 1px 4px;
+
+
+}
+
+
+div.pay-pal-express img {
+    margin: auto;
+    width: 500px;
+    display: block;
+    padding-top: 10px;
+}
+
+input#order_ship_street_2, input#order_ship_street_1, input#order_bill_street_1, input#order_bill_street_2 {
+    width: 445px;
+}
+
+input#order_ship_first_name, input#order_ship_last_name, input#order_bill_first_name, input#order_bill_last_name {
+    width: 218px;
+}
+
+input#order_ship_city, input#order_bill_city {
+    width: 260px;
+}
+
+input#order_ship_zip, input#order_bill_zip {
+    width: 60px;
+}
