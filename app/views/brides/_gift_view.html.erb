@@ -16,13 +16,13 @@
           <div class="gift-item">
               <%=  product_edit_div(gift.product)%>
               <div class="gift-float-center">
-                  <%= image_tag(gift.product.pictures.where(:title=>"Product List")[0].blank? ? "empty_s.jpg" : gift.product.pictures.where(:title=>"Product List")[0].image_url(:store_list_freshbetty).to_s,:class=>"product-image") rescue "" %>
+                  <%= image_tag(gift.product.pictures[0].blank? ? "empty_s.jpg" : gift.product.pictures[0].image_url(:product_list).to_s,:class=>"product-image") rescue "" %>
               </div>
-                  <b>Requested:</b>
-                  <%=editablefieldcreate("quantity_requested", gift)%>
-                  <br>
-                  <b>Reserved:</b>
-                  <%=editablefieldcreate("quantity_reserved", gift)%>
+              <b>Requested:</b>
+              <%=editablefieldcreate("quantity_requested", gift)%>
+              <br>
+              <b>Reserved:</b>
+              <%=editablefieldcreate("quantity_reserved", gift)%>
           </div>       
       </div>
 
