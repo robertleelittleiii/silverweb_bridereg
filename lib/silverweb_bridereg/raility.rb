@@ -37,5 +37,21 @@ module SilverwebBridereg
         has_many   :gift_registries
       end    
     end
+    
+    initializer "silverweb_bridereg.update_cart_model" do 
+      Cart.class_eval do
+        attr_reader :bride
+        
+        def bride=(bride)
+          @bride=bride
+        end
+        
+        def bride
+          @bride
+        end
+        
+        
+      end    
+    end
   end
 end

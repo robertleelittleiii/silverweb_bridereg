@@ -124,9 +124,8 @@ li.left-nav-selected {
     text-align: right;
 }
 
-
 div.available .title, div.reserved .title {
-    width: 160px;
+    width: 150px;
     background-color: #99a1a0;
     text-transform: uppercase;
     color: white;
@@ -135,8 +134,7 @@ div.available .title, div.reserved .title {
     text-align: right;
     display: inline-block;
     margin-bottom: 10px;
-
-
+    padding-right: 10px;
 }
 
 div.available .field, div.reserved .field {
@@ -191,13 +189,13 @@ div.gift-float {
     display: block;
     margin: auto;
     overflow: hidden;
-    width: 220px;
-    height: 280px;
+    width: 240px;
+    height: 240px;
     border: 2px solid #a3bac6;
 }
 
 img.gift-image {
-    width: 220px;
+    width: 240px;
 }
 
 
@@ -218,4 +216,22 @@ div.field div.cms-contentitem div.best_in_place input.best_in_place_adj {
     text-align: center;
     margin-top: -1px;
     font-size: 12px;
+}
+
+
+
+div#content div.best_in_place:hover, #user_account .do_hover {
+    /* padding-right: 1.5em; */
+    /* background: url("/images/red_pen.png") no-repeat right; */
+    background-color: rgba(0, 0, 0, 0.28) !important;
+    padding: 0px 5px 0px 5px !important;
+    margin: 0px 6px 4px 4px !important;
+}
+
+div#content div.best_in_place input.best_in_place_adj {
+    margin-left: -1px !important;
+}
+
+div#content div.field div.cms-contentitem div.best_in_place {
+        margin-left: 2px;
 }

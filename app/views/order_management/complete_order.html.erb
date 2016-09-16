@@ -1,5 +1,23 @@
 <%=page_attr_display(@page, "false") %>
 
+<div id="page-title">
+        Wish List
+    </div>
+
+    <%#*<div id="bride-info">%>
+       <%#=bride_edit_div(@cart.bride) %>
+       <%#*<div id="first-name" class="bride-info-item">%>
+            <%#=@cart.bride.user.user_attribute.first_name%>
+        <%#*</div>%>
+        <%#*<div id="last-name" class="bride-info-item">%>
+            <%#=#@cart.bride.user.user_attribute.last_name%>
+
+        <%#*</div>%>
+        <%#*<div id="wedding-date" class="bride-info-item">%>
+            <%#=@cart.bride.wedding_date.strftime("%m/%d/%Y") %>
+        <%#*</div>%>
+    <%#*</div>%>
+
 <div class="top-product-block">
 
         <%= render(:partial => "build_order", :object => @cart) %>
@@ -28,4 +46,4 @@
 
 </div>
 
-<%# console %>
+<% console %>

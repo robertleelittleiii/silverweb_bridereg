@@ -43,7 +43,15 @@ def create_empty_record
   @gift_registry.product.product_description = "Edit Me."
   @gift_registry.product.unit_price = 0
   @gift_registry.product.msrp = 0
+  @gift_registry.product.product_active=true;
   @gift_registry.product.save
+  
+    product_details = ProductDetail.new
+    product_details.sku_active=true
+    product_details.units_in_stock = 10
+    
+    @gift_registry.product.product_details <<  product_details
+    
     
   if @gift_registry.save
     respond_to do |format|

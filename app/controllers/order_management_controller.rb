@@ -82,6 +82,7 @@ class OrderManagementController < ApplicationController
   
   def complete_order
     find_cart()
+    
     @shipping_methods = [["Ground",0] , ["2 Day",1], ["Next Day",2], ["Pick Up Store",3]]
           
     if @cart.items.empty?
