@@ -49,12 +49,12 @@ div.gift-picture {
 
 div.gift-item {
     border: dotted transparent 1px;
-    width: 235px;
+    width: 244px;
     display: inline-block;
-    padding-left: 50px;
+    padding-left: 46px;
     margin: initial;
     position: relative;
-    padding-right: 50px;
+    padding-right: 46px;
 }
 
 div#edit-product {
