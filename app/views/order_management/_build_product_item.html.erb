@@ -18,7 +18,7 @@
         <div class="table-cell product-description-section">
             <div class="product-data-float">
                 <div class="product-image">
-                    <%=link_to(image_tag(build_product_item.pictures.first.blank? ? "empty_s.jpg" : build_product_item,:class=>"product-image").html_safe, {:action=>:product_detail, :controller=>:site, :id=>build_product_item.id}) %>
+                    <%=link_to(image_tag(build_product_item.pictures.first.blank? ? "empty_s.jpg" : build_product_item.pictures.first.image_url(:brid_reg_list_square).to_s,:class=>"product-image").html_safe, {:action=>:product_detail, :controller=>:site, :id=>build_product_item.id}) %>
                 </div>
 
                 <div class="product-name">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="product-description">
 
-                    <%=build_product_item.product_description %><br> 
+                    <%=build_product_item.product_description.html_safe %><br> 
                 </div>
             </div>
         </div>
