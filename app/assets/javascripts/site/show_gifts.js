@@ -29,7 +29,7 @@ function site_show_gifts_callDocumentReady() {
 
 
     require("brides/shared.js");
-    brideeditClickBinding("div.edit-bride");
+    brideeditClickBinding("div.edit-bride-gear");
 
 
     if ($("#admin-active").text() == "true") {

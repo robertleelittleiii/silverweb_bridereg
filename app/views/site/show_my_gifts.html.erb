@@ -6,8 +6,12 @@
 
 <div id="show-gifts-page">
 
+    <div id="account-info">
+              <%=link_to "Account Settings" ,{:action => :index, :controller=>:admin}, {:remote=>true, :class=>"navigation-link", :id=>"user-settings"} %>
+   </div>
+    
     <div id="page-title">
-        Wish List
+        My Wish List
     </div>
 
     <div id="bride-info">
@@ -57,30 +61,13 @@
 
                             <div class="available">
                                 <div class="title">
-                                    Quantity Avalilable
+                                    Quantity Reserved
                                 </div>
                                 <div class="field">
-                                    <%=gift.quantity_left.to_i || "0" rescue 0%>
+                                    <%=gift.quantity_reserved.to_i || "0" rescue 0%>
                                 </div>
                             </div>
-                            <div class="reserved">
-                                <div class="title">
-                                    Reserve
-                                </div>
-                                <div class="field">
-                                    <%@found_cart_item = @cart.get_cart_items(gift.product)[counter] || CartItem.new(gift.product,gift.product.product_details.first, 0) %>
-                                    <%# =@found_cart_item = @cart.get_cart_item_color_size_product(gift.product,"n/a","n/a") || CartItem.new(gift.product,gift.product.product_details.first, 0)%>
-
-                                    <%if(!@found_cart_item.blank? )then%>
-                                      <%= editablefieldcreate('quantity', @found_cart_item,"0",{:path=>"update_cart_item?product=#{gift.product.id}&gift=#{gift.id}&color=#{gift.product.product_details.first.color}&size=#{gift.product.product_details.first.size}" }) rescue "n/a" %>
-                                    <%else %>
-                                      n/a
-                                    <%end%>
-    <%#=gift.quantity_reserved.to_i || "0" rescue 0%>
-                                </div>
-                                <%#@found_cart_item.inspect %>
-
-                            </div>   
+                            
                         </div>
                     </div>
 

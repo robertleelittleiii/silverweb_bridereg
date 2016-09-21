@@ -38,6 +38,52 @@ module SilverwebBridereg
       end    
     end
     
+    initializer "silverweb_bridereg.update_order_items_model" do 
+      OrderItem.class_eval do
+        belongs_to   :bride
+        
+        def self.from_cart_item(cart_item, bride_id)
+          if cart_item.quantity == 0 then
+            nil
+          else
+            oi = self.new
+            oi.product_id     = cart_item.product.id
+            oi.product_detail_id = cart_item.product_detail.id
+            oi.quantity    = cart_item.quantity
+            oi.price = cart_item.price
+            oi.color = cart_item.color
+            oi.size = cart_item.size
+            oi.title = cart_item.title
+            oi.description =cart_item.description
+            oi.bride_id = bride_id
+            oi
+          end
+        end
+      end    
+    end
+    
+    initializer "silverweb_bridereg.update_orders_model" do 
+      Order.class_eval do
+        belongs_to   :bride
+
+        clear_validators!
+
+        validates_presence_of  :bill_first_name, :bill_last_name, :bill_street_1, :bill_city, :bill_state, :bill_zip
+
+
+        def add_line_items_from_cart(cart, host, bride_id)
+          cart.items.each do |item|
+            li = OrderItem.from_cart_item(item, bride_id)
+    
+            order_items << li if (not li.nil?)
+          end
+  
+          #  self.shipping_price= cart.shipping_cost
+        end
+      end
+      
+    end
+    
     initializer "silverweb_bridereg.update_cart_model" do 
       Cart.class_eval do
         attr_reader :bride
@@ -52,6 +98,16 @@ module SilverwebBridereg
         
         
       end    
+    end
+    
+    initializer "silverweb_bridereg.update_image_uploader" do 
+
+      ImageUploader.class_eval do
+        
+        version :brid_reg_list_square do 
+          process :resize_to_fill =>[245,245]
+        end
+      end
     end
   end
 end

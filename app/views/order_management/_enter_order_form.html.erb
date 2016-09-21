@@ -1,14 +1,19 @@
 
 <%= form_for :order, :url => { :controller=>:order_management, :action => :enter_order } do |form| %>
+  <% if Settings.use_shipping_address == "true" then %>
   <div class="shipping-address">
-    <div class="address-title">Shipping Address <div id="copy-to-billing" class="windsor-button"><%=link_to "Copy to Billing" ,{},{:href=>"javascript:void();",:onclick=>"return false;", :class=>""}%></div></div>
+    <div class="address-title">Shipping Address <div id="copy-to-billing" class="bridalreg-button"><%=link_to "Copy to Billing" ,{},{:href=>"javascript:void();",:onclick=>"return false;", :class=>""}%></div></div>
 
     <div>
       <b>Name:</b> </br>
       <%= form.text_field :ship_first_name , :size => 33 %>  <%= form.text_field :ship_last_name, :size => 32 %>
     </div>
 
-
+<div>
+      <b>Phone:</b> </br>
+      <%= form.text_field :ship_phone , :size => 72 %>
+    </div>
+    
     <div>
       <b>Street:</b></br>
       <%= form.text_field :ship_street_1, :rows => 1, :size => 72 %></br>
@@ -33,6 +38,7 @@
 
   </div>    
 
+<% end %>
 
   <div class="billing-address">
     <div class="address-title">Billing Address</div>
@@ -42,7 +48,11 @@
       <%= form.text_field :bill_first_name , :size => 33 %>  <%= form.text_field :bill_last_name, :size => 32 %>
     </div>
 
-
+<div>
+      <b>Phone:</b> </br>
+      <%= form.text_field :bill_phone , :size => 72 %>
+    </div>
+    
     <div>
       <b>Street:</b></br>
       <%= form.text_field :bill_street_1, :rows => 1, :size=> 72 %></br>
@@ -71,12 +81,12 @@
 
 
   <div class="nav-cart-bottom"> 
-    <div class="nav-cart-left windsor-button">
+    <div class="nav-cart-left bridalreg-button">
       <%=link_to "<< Back to Order" ,request.env['HTTP_REFERER'], {:class=>"navigation-link"} %>
       <%=link_to "Cancel Order" ,{:action => :empty_cart, :controller=>:site}, {:class=>"navigation-link"} %>
     </div>
 
-    <div class="nav-cart-right windsor-button">
+    <div class="nav-cart-right bridalreg-button">
       <%= submit_tag "Place Order", {:class => "navigation-link"} %>
 
   <%#=link_to "Continue to Confirmation >>" ,{:action => :enter_order, :controller=>:orders}, {:class=>"navigation-link"} %>

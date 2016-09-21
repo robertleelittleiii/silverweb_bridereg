@@ -40,6 +40,9 @@ class BridesController < ApplicationController
     @bride.user.name = "User_" + Time.now.to_i.to_s + "@someaddress.com"
     @bride.user.password = "password"
     @bride.user.password_confirmation = "password"
+ 
+    role = Role.find_by_name("Bride")
+    @bride.user.roles << role
     
     @bride.user.user_attribute = UserAttribute.new
     @bride.user.user_attribute.first_name = "First"

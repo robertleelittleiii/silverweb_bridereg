@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     end
   end
   
+    match "/site/show_my_gifts" => "site#show_my_gifts", via: :get
     match "/site/show_gifts" => "site#show_gifts", via: :get
     match "/site/update_cart_item" => "site#update_cart_item", via: :put
     match "/site/update_session" => "site#update_session", via: :put

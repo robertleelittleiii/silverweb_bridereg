@@ -1,8 +1,23 @@
 <%=page_attr_display(@page, "true") %>
 
-<div class="myaccountblock" Align="Left">
-    <div class="cart-title" >Shipping and Billing Information</div>
 
+<div class="myaccountblock" Align="Left">
+    <div class="cart-title" > <% Settings.use_shipping_address == "true" ? "Shipping and " : ""%>Billing Information</div>
+
+    <div id="bride-info">
+       <%=bride_edit_div(@cart.bride.first) %>
+       <div id="first-name" class="bride-info-item">
+            <%=@cart.bride.first.user.user_attribute.first_name%>
+        </div>
+        <div id="last-name" class="bride-info-item">
+            <%=@cart.bride.first.user.user_attribute.last_name%>
+
+        </div>
+        <div id="wedding-date" class="bride-info-item">
+            <%=@cart.bride.first.wedding_date.strftime("%m/%d/%Y") %>
+        </div>
+    </div>
+    
     <div align="center">
         <!-- START:flash -->
         <% if notice -%>
@@ -25,8 +40,6 @@
     </div>
 
     <div class="myaccountblock">
-
-
         <% if !@order.express_token.blank? %>
           <%= render 'enter_order_express_form' %>
         <% else %>

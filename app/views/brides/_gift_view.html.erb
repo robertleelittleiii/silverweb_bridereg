@@ -22,7 +22,8 @@
               <%=editablefieldcreate("quantity_requested", gift)%>
               <br>
               <b>Reserved:</b>
-              <%=editablefieldcreate("quantity_reserved", gift)%>
+              <%#=editablefieldcreate("quantity_reserved", gift)%>
+              <div id="quantity_reserved"> <%=gift.true_quantity_reserved%></div>
           </div>       
       </div>
 

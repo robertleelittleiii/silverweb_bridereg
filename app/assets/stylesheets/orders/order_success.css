@@ -1,0 +1,125 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 20, 2016, 3:05:25 PM
+    Author     : rlittle
+*/
+
+
+div#invoice-frame.zoom {
+
+    -moz-transform: scale(1,1);
+    -webkit-transform: scale(1,1);
+    -o-transform: scale(1,1);
+    -ms-transform: scale(1,1); 
+}
+
+div#invoice-frame.shrink {
+    -moz-transform: scale(.5,.5);
+    -webkit-transform: scale(.5,.5);
+    -o-transform: scale(.5,.5);
+    -ms-transform: scale(.5,.5); 
+    
+}
+
+div#invoice-frame {
+    transition: all 1s ease-in-out;
+
+    /*
+    
+    
+        -moz-transform-origin: top left !important;
+        -webkit-transform-origin: top left !important;
+        -o-transform-origin: top left !important;
+        -ms-transform-origin: top left !important;
+        transform-origin: top left !important;
+    */
+
+    margin-bottom: -300px !important;    
+    position: relative;
+    background-color:white;
+    transform-origin: top left;
+    background-color: white;
+    width: 875px;
+    height: 1000px;
+    margin:auto;
+    display:table;
+
+}
+
+
+div#invoice-frame iframe {
+    transition: all .2s ease-in-out;
+}
+
+
+div#invoice-frame.zoom  iframe{
+
+    -moz-transform: scale(1,1);
+    -webkit-transform: scale(1,1);
+    -o-transform: scale(1,1);
+    -ms-transform: scale(1,1); 
+}
+
+div#invoice-frame.shrink  iframe{
+    -moz-transform: scale(1,1);
+    -webkit-transform: scale(1,1);
+    -o-transform: scale(1,1);
+    -ms-transform: scale(1,1); 
+
+}
+
+
+div#frame-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 45%;
+    overflow: hidden;
+    height: 515px;
+}
+
+div#frame-wrapper.zoom {
+    width: 100%;
+    overflow: auto;
+    height: 1024px;
+}
+
+
+#invoice-tools {
+    display: inline-block;
+    width: 525px;
+    border: black 1px dotted;
+    height: 500px;
+    border-image: initial;
+    vertical-align: top;
+    margin-top: 0px;
+    position: relative;
+    margin-left: 25px;
+}
+
+div#success-page {
+    display: inline-block;
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+div#edit-bride-gear {
+    position: absolute;
+}
+
+div.myaccountblock {
+    padding-top: 30px;
+}
+
+#zoom-invoice {
+    display: inline-block;
+    vertical-align: top;
+    margin: auto;
+    margin-right: 80%;
+    margin-bottom: 20px;
+
+}

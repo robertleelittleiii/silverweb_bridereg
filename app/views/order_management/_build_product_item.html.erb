@@ -8,70 +8,47 @@
 
 %>
 
+<%@found_cart_item = @cart.get_cart_items(@product)[build_product_item_counter]%>
+<%# @found_cart_item.inspect %>
+
+
 
 <div class="product-block" data-id="<%=@product.id%>" >
-<div class="product-section">
-    <div class="product-image">
-      <%=link_to(image_tag(build_product_item.list_view_image.blank? ? "empty_s.jpg" : build_product_item.list_view_image.image_url(:store_list_windsor).to_s,:class=>"product-image").html_safe, {:action=>:product_detail, :controller=>:site, :id=>build_product_item.id}) rescue "" %>
-    </div>
-    
-    <%=build_product_item.category_list.first %><br>
-    <%=build_product_item.product_name %><br>
-    <%=build_product_item.product_description %><br> 
+    <div class="product-float">
+        <div class="table-cell product-description-section">
+            <div class="product-data-float">
+                <div class="product-image">
+                    <%=link_to(image_tag(build_product_item.pictures.first.blank? ? "empty_s.jpg" : build_product_item,:class=>"product-image").html_safe, {:action=>:product_detail, :controller=>:site, :id=>build_product_item.id}) %>
+                </div>
 
+                <div class="product-name">
+                    <%=build_product_item.product_name %><br>
+                </div>
+                <div class="product-description">
 
-    <div id="product-sizes">
-        <% @product_size_array.each_with_index do |each_item, counter|  %>
-          <div id="size-name" class="hidden-item"><%=each_item%></div>
-          <div class="column"> <%=each_item%></div>
-        <% end %>
-    </div>
+                    <%=build_product_item.product_description %><br> 
+                </div>
+            </div>
+        </div>
+        <div class="table-cell product-upc-section">
+            <div class="product-data-float">
 
-    <% @product_cart_items = @cart.get_cart_items(build_product_item) %>
+                <%=build_product_item.product_details.first.inventory_key rescue "n/a" %>
+            </div>
+        </div>
+        <div class="table-cell product-quantity-section">
+            <div class="product-data-float">
+                <%if(!@found_cart_item.blank? )then%>
+                  <%= editablefieldcreate('quantity', @found_cart_item,"0",{:path=>"/site/update_cart_item?product=#{@product.id}&gift=11&color=N/C&size=N/S" }) %>
+                <%else %>
+                  n/a
+                <%end%>            </div>
 
-    <div id="product-size-color">
-        <div id="product-size-color-items">
-            <% @product_colors.each_with_index do |color, index| %>
-              <div class="row">
-                  <div class="row-title"><%=color.color%></div>
-                  <% @product_size_array.each_with_index do |size, counter|  %>
-                    <div class="product-size-color-item">
-                        <div class="column">  
-    <%#@test =  @product_cart_items.find{|item| ((item.product_detail.color==color.color) && (item.product_detail.size==size))} 
-
-    @test.product
-    %>
-                            <%@found_cart_item = @cart.get_cart_item_color_size_product(@product,color.color,size)%>
-
-                            <%if(!@found_cart_item.blank? )then%>
-                              <%= editablefieldcreate('quantity', @found_cart_item,"0",{:path=>"update_cart_item?product=#{@product.id}&color=#{color.color}&size=#{size}" }) %>
-                            <%else %>
-                              n/a
-                            <%end%>
-
-
-
-    <%#=text_field_tag("color_size[" +color.color.tr(" ","2z1AaA1z2") + "_" + each_item.gsub("-","a")+ "]")   %>
-
-                        </div>
-                    </div>
-                  <% end %>
-              </div>
-            <% end %>
+        </div>
+        <div class="table-cell product-price-section">
+            <div class="product-data-float">
+                <%=number_to_currency(build_product_item.msrp) %>
+            </div>
         </div>
     </div>
-<div class="product-summary">
-   <%= render(partial: "build_order_product_summary.html") %>
-</div>
-
-    <%#*@product_cart_items.find {|item| item.product_detail.color==color and item.product_detail.size==size}%>
-<%#= render(:partial => "build_product_detail_item" , :collection => @cart.get_cart_items(build_product_item)) %>
-
-<%#= @cart.get_cart_items(build_product_item).each do |detail_item| %>
-
-<%#=detail_item.inspect%>
-
-<%# end %>
-
-</div>
 </div>

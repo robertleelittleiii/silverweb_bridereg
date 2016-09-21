@@ -203,3 +203,18 @@ div#product-search-bar {
 input#product-search {
     margin: 8px;
 }
+
+div#quantity_reserved {
+    display: inline;
+    margin-left: 50px;
+}
+
+div#gift-products div.gift-item {
+    padding-bottom: 20px;
+}
+
+div#gift-products div.gift-item div.best_in_place:hover, #user_account .do_hover {
+    /* padding-right: 1.5em; */
+    /* background: url("/images/red_pen.png") no-repeat right; */
+    background-color: #a5a5a5;
+}

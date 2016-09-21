@@ -241,3 +241,8 @@ div#edit-bride-gear {
     position: absolute;
     cursor: pointer;
 }
+
+div#account-info {
+    position: absolute;
+    margin-top: 20px;
+}

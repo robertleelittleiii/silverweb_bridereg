@@ -3,7 +3,7 @@ class OrderManagementController < ApplicationController
   def update_cart_item
     @cart=Cart.get_cart("cart"+session[:session_id], session[:user_id]) rescue  Rails.cache.write("cart"+session[:session_id],{}, :expires_in => 15.minutes)
     @product = Product.find(params[:product])
-    @cart_item = @cart.get_cart_item_color_size_product(@product, params[:color],params[:size])
+    @cart_item = @cart.get_cart_items(@product).first
     
     @flash_message = ""
     @return_quantity = params[:cart_item][:quantity].to_i
@@ -102,7 +102,7 @@ class OrderManagementController < ApplicationController
     #  @cart = (session[:cart] ||= Cart.new)
     #user =  User.find_by_id(session[:user_id])
 
-      session[:create]=true
+    session[:create]=true
     
     @cart=Cart.get_cart("cart"+session[:session_id], session[:user_id]) rescue  Rails.cache.write("cart"+session[:session_id],{}, :expires_in => 15.minutes)
     
@@ -137,7 +137,10 @@ class OrderManagementController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @page_title = "order success"
     @page = Page.find_by_title (@page_title).first
-
+    find_cart
+    
+    bride_id = session[:bride_id]
+    
     cart_is_empty = false;
     purchase_success = false;
     error_occured = false;
@@ -160,7 +163,7 @@ class OrderManagementController < ApplicationController
       @cart=Cart.get_cart("cart"+session[:session_id], user.id)
 
       @order = Order.new(order_params)
-      @order.add_line_items_from_cart(@cart, $hostfull, user.price_group_id)
+      @order.add_line_items_from_cart(@cart, $hostfull, bride_id)
       @order.shipping_method = @cart.shipping_type
       @order.sales_tax = @cart.calc_tax 
       @order.shipping_cost = @cart.calc_shipping[@cart.shipping_type]
@@ -169,6 +172,7 @@ class OrderManagementController < ApplicationController
       @order.coupon_description = @cart.coupon_description
       @order.coupon_value = @cart.coupon_value
       @order.store_wide_sale = @cart.calc_store_wide_sale
+      @order.bride_id = bride_id
       puts("-=-=-=-=-=-=-=-=-=-=-=-=-=->>>> #{@order.inspect}")
 
       

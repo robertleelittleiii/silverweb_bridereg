@@ -49,13 +49,61 @@ module SilverwebBridereg
       
         #       before_filter :find_cart, :except => :empty_cart
 
+        def show_my_gifts
+          puts("in show my gifts...")
+          @user =  User.where(:id=>session[:user_id]).includes(:user_attribute).first
+          
+          if !@user.nil? then
+          
+            @bride = @user.bride
+         
+            if !@bride.nil? then
+           
+          
+              session[:bride_id] = @bride.id
+          
+              @page_name = "Wishlist for " + @bride.user.full_name
+              @gifts_per_page = Settings.gifts_per_page.to_i || 8
+        
+          
+              @gifts_list = @bride.gift_registries
+    
+              @gift_ids = @gifts_list.collect{|gift| gift.id }
+
+              @gift_count = @gifts_list.length
+
+              @gifts = GiftRegistry.where(:id=>@gift_ids).order("position ASC").order("created_at DESC").page(params[:page]).per(@gifts_per_page)
+
+              @gift_first = params[:page].blank? ? "1" : (params[:page].to_i*@gifts_per_page - (@gifts_per_page-1))
+    
+              @gift_last = params[:page].blank? ? @gifts.length : ((params[:page].to_i*@gifts_per_page) - @gifts_per_page) + @gifts.length || @gifts.length
+            end
+          end
+          if @user.nil? then
+            redirect_to :controller=>:site, :alert=>"Please login to access your registry."
+          elsif @bride.nil? then
+            redirect_to :controller=>:site, :alert=>"You do not have a registry on this site.  Contact support."
+          else
+            respond_to do |format|
+              format.html 
+              format.xml  { render :xml => @gifts }
+            end
+          end
+        
+        end
+        
+        
         def show_gifts
           puts("in show items...")
           @bride = Bride.find(params[:id])
           # find_cart()
           @cart=Cart.get_cart("cart"+session[:session_id], session[:user_id]) rescue  Rails.cache.write("cart"+session[:session_id],{}, :expires_in => 15.minutes)
+          # @cart = find_cart
 
           @cart.bride = @bride if !@bride.nil?
+         
+          session[:bride_id] = params[:id]
+          
           @cart.save
           
           puts("----------- >> cart << --------------")
@@ -116,15 +164,15 @@ module SilverwebBridereg
           @cart_item =  @cart.add_product(@product, @product.product_details.first, 0)
           #else          
          
-            begin 
-              @cart.update_product(@cart_item.product_detail, params[:cart_item][:quantity].to_i)
+          begin 
+            @cart.update_product(@cart_item.product_detail, params[:cart_item][:quantity].to_i)
     
-            rescue Exception => e
-              message_json = JSON.parse(e.message)
-              puts(message_json)
-              @return_quantity = message_json["max_value"].to_s
-              @flash_message = "Requested amount exceeded inventory, set to max available."
-            end
+          rescue Exception => e
+            message_json = JSON.parse(e.message)
+            puts(message_json)
+            @return_quantity = message_json["max_value"].to_s
+            @flash_message = "Requested amount exceeded inventory, set to max available."
+          end
           #end
 
           # @cart_item.quantity = params[:cart_item][:quantity].to_i
@@ -154,6 +202,7 @@ module SilverwebBridereg
       
       def find_bride
         @bride = Bride.eager_load(:user).eager_load(:user=>:user_attribute).where("user_attributes.first_name like ?","%" + session[:bride_first_name] + "%").where("user_attributes.last_name like ?","%"+session[:bride_last_name]+"%").where("wedding_date = ?",Date.parse(session[:bride_wedding_date]).to_s(:db)) rescue {}
+        @cart.delete rescue ""
         
         @cart=Cart.get_cart("cart"+session[:session_id], session[:user_id]) rescue  Rails.cache.write("cart"+session[:session_id],{}, :expires_in => 15.minutes)
         
@@ -164,9 +213,9 @@ module SilverwebBridereg
         bride_id = @bride.first.id rescue 0
         message = found ? "Bride was found, click wishlist button to continue." : "Bride not fouund! Please double check first and last name and wedding date."
         respond_to do |format|
-            format.html { render :nothing=>true }
-            format.json { render :json=> {:found=>found, :bride_id => bride_id, :notice => message} }
-          end
+          format.html { render :nothing=>true }
+          format.json { render :json=> {:found=>found, :bride_id => bride_id, :notice => message} }
+        end
       end
       
     end

@@ -1,8 +1,51 @@
-<div class="cart-title" >Current Order (in progress)</div>
-    
+
+<div id="page-title">
+        Your Order
+    </div>
+
+    <div id="bride-info">
+       <%=bride_edit_div(@cart.bride.first) %>
+       <div id="first-name" class="bride-info-item">
+            <%=@cart.bride.first.user.user_attribute.first_name%>
+        </div>
+        <div id="last-name" class="bride-info-item">
+            <%=@cart.bride.first.user.user_attribute.last_name%>
+
+        </div>
+        <div id="wedding-date" class="bride-info-item">
+            <%=@cart.bride.first.wedding_date.strftime("%m/%d/%Y") %>
+        </div>
+    </div>
+
+
 <div id="cart-contents">
+    <div id="cart-header">
+        <div id="item-description" class="table-header">
+            Description
+        </div>
+         <div id="item-upc" class="table-header">
+            UPC
+        </div>
+          <div id="item-quantity" class="table-header">
+           Quantity
+        </div>
+          <div id="item-price" class="table-header">
+            Price
+        </div>
+    </div>
     <%#=build_order.get_cart_products.inspect%>
   <%= render(:partial => "build_product_item" , :collection => build_order.get_cart_products) %>
+    <div id="cart-footer">
+        <div id="item-description-bottom" class="table-footer">
+            
+        </div>
+         <div id="current-subtotal-title" class="table-footer">
+            Current Subtotal
+        </div>
+          <div id="current-subtotal" class="table-footer">
+                    <%= render :partial=>"order_summary_body.html" , :locals=>{:build_order=>@build_order} %>
+        </div>
+    </div>
 </div>
 
 
@@ -33,8 +76,4 @@
       Summary
     </div> -->
    
-    <div class="cart-summary-body"> 
-      <%= render :partial=>"order_summary_body.html" , :locals=>{:build_order=>@build_order} %>
-    </div>
-
   </div>

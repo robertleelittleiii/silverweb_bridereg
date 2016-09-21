@@ -21,8 +21,8 @@ div#content.order_management.enter_order div.myaccountblock {
 }
 
 div.cart-title {
-    font-size: 25pt !important;
-    color: #244561 !important;
+    font-size: 25pt;
+    color: #244561;
     text-align: center;
     height: 65px;
     padding-top: 20px;
@@ -36,22 +36,22 @@ div.nav-cart-bottom {
     background-color: #64888f;
 }
 
-div.windsor-button {
+div.bridalreg-button {
     display: inline-block;
     position: relative;
     padding-left: 10px;
 }
 
-div.nav-cart-left.windsor-button {
+div.nav-cart-left.bridalreg-button {
     float: left;
 }
 
-div.nav-cart-right.windsor-button {
+div.nav-cart-right.bridalreg-button {
     float: right;
     padding-right: 20px;
 }
 
-div.nav-cart-left.windsor-button {
+div.nav-cart-left.bridalreg-button {
     float: left;
     padding-left: 20px;
 }
@@ -386,4 +386,8 @@ input#order_ship_city, input#order_bill_city {
 
 input#order_ship_zip, input#order_bill_zip {
     width: 60px;
+}
+
+div#edit-bride-gear {
+    position: absolute;
 }

@@ -16,7 +16,7 @@ def bride_info(bride)
     if session[:user_id] then
       user=User.find(session[:user_id])
       if user.roles.detect{|role|((role.name=="Admin") | (role.name=="Site Owner"))} then
-        returnval="<div id=\"edit-bride\" class=\"edit-bride\">"
+        returnval="<div id=\"edit-bride-gear\" class=\"edit-bride-gear\">"
         returnval << "<div id='bride-id' class='hidden-item'>#{bride.id}</div>"
         returnval=returnval+image_tag("interface/edit.png",:border=>"0", :class=>"imagebutton", :title => "Edit this Bride")
         returnval=returnval + "</div>"
@@ -26,6 +26,16 @@ def bride_info(bride)
     return returnval.html_safe
   end
   
+  def bride_active
+    returnval="false"
+    if session[:user_id] then
+      user=User.find(session[:user_id])
+      if user.roles.detect{|role|(role.name=="Bride")} then
+        returnval="true"
+      end
+    end
+    return returnval.html_safe
+  end
 
 end
 

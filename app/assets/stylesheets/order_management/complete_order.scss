@@ -6,29 +6,38 @@ and open the template in the editor.
 /* 
     Created on : Feb 25, 2016, 11:23:42 PM
     Author     : rlittle
+
+*= require site/show_gifts
+
 */
 
 div.product-block {
     text-align: left;
-    border: 3px solid #244561;
-    padding: 20px;
-    width: 44%;
-    margin-bottom: 20px;
+    padding: 0px;
+    width: 100%;
+    margin-bottom: 0px;
     float: left;
     display: inline-block;
     position: relative;
-    margin: 5px;
+    margin: 0px;
     vertical-align: top;
-    min-height: 275px;
-    background-color: #64888f;
-    color: white;
+    min-height: 150px;
+    color: black;
+    border-bottom: 1px solid #a0a4a7;
+    font-size: 15px;
+    font-family: open_sansregular;
 }
 
+div.product-float {
+    display: table;
+    position: relative;
+    width: 100%;
+}
 
 div.product-block div.best_in_place {
     background-color: white;
     color: black;
-    height: 15px;
+    height: 20px;
     padding-top: 3px;
     padding-bottom: 3px;
     margin-left: 0px;
@@ -64,7 +73,7 @@ div.product-block div.row-title {
     display: inline-block;
     width: 120px;
     text-align: right;
-        font-family:'open_sansextrabold';
+    font-family:'open_sansextrabold';
 
 }
 
@@ -74,32 +83,26 @@ div.product-size-color-item input.best_in_place_adj {
 }
 
 div.product-image img {
-    height: 75px;
+    height: 175px;
     width: auto;
+    margin-bottom: -4px;
 }
 
 div.product-image {
     float: left;
     overflow: hidden;
-    width: 187px;
-    height: 76px;
     margin-right: 20px;
-    border: 3px solid white;
-    box-shadow: 0px 0px 10px white;
+    border: 2px solid lightgray;
+    box-shadow: 0px 0px 20px white;
+    margin-bottom: 20px;
     background-color: white;
 }
+
 
 div.top-product-block {
     display: inline-block;
     position: relative;
-background: #f6f9f9;
-    background: -moz-linear-gradient(left, #f6f9f9 0%, #b6cbd0 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, #f6f9f9), color-stop(100%, #b6cbd0));
-    background: -webkit-linear-gradient(left, #f6f9f9 0%, #b6cbd0 100%);
-    background: -o-linear-gradient(left, #f6f9f9 0%, #b6cbd0 100%);
-    background: -ms-linear-gradient(left, #f6f9f9 0%, #b6cbd0 100%);
-    background: linear-gradient(to right, #f6f9f9 0%, #b6cbd0 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f9f9', endColorstr='#b6cbd0', GradientType=1 );    border: 2px black solid;
+    background:transparent;
     width: 100%;
 }
 
@@ -164,15 +167,62 @@ div.cart-sumamry-row {
     color: white;
 }
 
-div.nav-cart-right.windsor-button {
+div.nav-cart-right.bridalreg-button {
     float: right;
     padding-right: 20px;
 }
 
 div.nav-cart-bottom {
-    height: 50px;
+    height: 40px;
     display: inline-block;
-    width: 100%;
+    width: 99%;
     padding-top: 20px;
-    background-color: #64888f;
+    background-color: #fffeed;
+    box-shadow: 0px 0px 13px #c3c2bc;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+div#item-upc, div.product-upc-section {
+    width: 16%;
+}
+
+div#item-quantity, div.product-quantity-section {
+    width: 16%;
+}
+
+
+div.table-cell.product-description-section {
+    width: 50%;
+}
+
+div.product-float div.table-cell {
+    display: table-cell;
+    position: relative;
+    border-right: 2px solid darkgray;
+}
+
+div#item-price, div.product-price-section {
+    border-right: 0px solid darkgray !important;
+
+}
+
+div.product-price-section {
+    text-align: right;
+    padding-right: 20px;
+}
+
+div#current-subtotal-title {
+    width: 32%;
+    border-right: 0px solid transparent !important;
+    text-align: right;
+    padding-right: 20px;
+}
+
+
+div#current-subtotal {
+    text-align: right;
+    padding-right: 20px;
 }

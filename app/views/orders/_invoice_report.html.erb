@@ -1,0 +1,222 @@
+<style>
+
+    th.cell-header {
+        background-color: #f7f4eb;
+        color: #8a9191;
+        text-align: left;
+        padding: 15px;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-family: 'open sans';
+        font-weight: bold;
+        border-right: 1px solid black;
+    }
+
+    .skip-border {
+        border-right: none !important;
+    }
+
+    .skip-fill {
+        background-color: transparent !important;
+
+    }
+
+    td.cell-format {
+        border-right: 1px solid black;
+        border-bottom: 1px dotted lightgray;
+    }
+    td.cell-format-img {
+        border-bottom: 1px dotted lightgray;
+    }
+
+    td.cell-format-img img {
+        border: 1px dotted black;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .title-case {
+      font-family: 'Dancing Script'; 
+      font-size: 20px;
+    }
+    
+    .signature-line {
+      font-family: 'Dancing Script'; 
+      font-size: 20px;
+    }
+</style>
+
+
+<table width="850" border="0" cellpadding="5" cellspacing="5">
+
+    <tbody>
+        <tr>
+            <td>
+                <%= image_tag(image_url("site/logo-full.png"), {:width=>"175", :height=>"123", :style=>"float: left;vertical-align: top;"}) %></br>
+                <div class="address-info" style="display: inherit;padding-left: 24px;">
+                    <%=CGI.unescapeHTML(Settings.company_address).html_safe%></br>
+                    T: <%= @company_phone%><%= !@company_fax.blank? ? ", F: " + @company_fax : "" %></br>
+                    <%= Settings.company_url  %>
+
+                </div>
+            </td>
+            <td valign="top" align="right">
+                todays date: ______________________ <br>
+
+                <div class="title-case" style="color: lightgray; padding-top:25px; " >Reserved for</div>
+                <div>
+                    <%=@order.bride.user.user_attribute.first_name%>  <%=@order.bride.user.user_attribute.last_name%>
+                </div>
+                <div>
+                    date of wedding: <%=@order.bride.wedding_date.strftime("%m/%d/%Y") %>
+                </div>
+                <div>
+                    order#: <%= @order.id.to_s.rjust(10, '0') %>
+                </div> 
+
+            </td>
+
+        </tr>
+
+        <tr>
+            <td valign="top" border="1" width="50%">
+                <table border="0" width="100%" style="background-color: #f7f4eb; padding: 14px;">   
+                    <tr height="175"><td valign="top">
+                            <div class="title-case"  style="color: black; font-weight:bold;" ><b> Bill To:</b></div></br>
+                        </td>
+                        <td valign="top">
+                            <%= @order.full_billing_name %></br>
+                            <%= @order.full_billing_street %></br>
+                            <%= @order.bill_city %>, <%= @order.bill_state %> <%= @order.bill_zip %></br>
+                            </br>
+                            Phone: <%= @order.billing_phone %></br>
+                            Email: <%= @order.user.name %></br>
+                        </td></tr></table>
+            </td>
+            <td valign="top" width="50%">
+                <table border="0" width="100%" style="background-color: #f7f4eb;padding: 14px;">   
+                    <tr><td valign="top">
+                            <div class="title-case" style="color: black; font-weight:bold;" ><b> Deliver To:</b></div></br>
+                        </td>
+                        <td>
+                            <span style="line-height:30px;">address: ____________________________</span></br></br>
+                            ___________________________________</br></br>
+                            ___________________________________</br></br>
+                            e-mail: _____________________________</br></br>
+                            phone: _____________________________</br>
+                        </td></tr></table>
+            </td> 
+
+        </tr>
+        <tr>
+            <td height="100" valign="top">
+                <div style="font-size: 20px; font-family: 'Dancing Script'; color: black; font-weight:bold;" ><b>Special Instructions:</b></div></br>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table cellpadding="2" cellspacing="0" border="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="cell-header">Description</th>
+                            <th  class="cell-header" style="text-align:center;">UPC</th>
+                            <th class="cell-header" style="text-align:center;">Quantity</th>
+                            <th class="cell-header skip-border" style="text-align:right;">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%  @order.order_items.each do |order_item| %>
+
+
+                          <tr class="<%= cycle('odd gradeA', 'even gradeA')%> shipping-item-row"  style = "cursor:pointer">
+                              <td class="cell-format-img" align="center" width="54">
+                                  <%= image_tag(image_url(order_item.product.pictures.first.image_url(:brid_reg_list_square).to_s),:border=>"0", :width=>"100", :height=>"100",:style=>"border:1px dotted black;") rescue image_tag(image_url("empty_s.jpg"),:border=>"0", :width=>"40", :height=>"50") %>
+                              </td>
+                              <td class="cell-format" style="padding-left:20px;" align="left"  width="375"><%=order_item.title.html_safe%> - <%=order_item.description.to_s.gsub(/<\/?[^>]+>|(\r\n|\n|\r)|&nbsp;/, '').html_safe%></td>
+                              <td class="cell-format" align="center"  width="149"><%=order_item.product_detail.inventory_key rescue "Not Available"%></td>
+                              <td class="cell-format" align="center"  width="97"><%=order_item.quantity%></td>
+                              <td class="cell-format skip-border" align="center" style="text-align:right;padding-right:20px" width="124"><%=number_to_currency(order_item.price)%></td>
+                          </tr>
+                        <% end %>
+
+                    </tbody>
+                    <tfoot>
+
+                        <tr>
+                            <th> </th>
+                            <th  class="cell-header" style="text-align:right;" colspan="3" align="right">
+                                Sub Total:
+                            </th>
+                            <th class="cell-header skip-border" align="right" style="text-align:right;padding-right:20px">
+                                <%=number_to_currency(@order.total_price)%>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th> </th>
+                            <th class="cell-header skip-fill" style="text-align:right;" colspan="3" align="right">
+                                Shipping:
+                            </th>
+                            <th class="cell-header skip-fill skip-border" align="right" style="text-align:right;padding-right:20px">
+                               FREE/LOCAL <%#=number_to_currency(@order.shipping_cost)%>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th> </th>
+                            <th class="cell-header" colspan="3" style="text-align:right;"  align="right">
+                                Sales Tax:
+                            </th>
+                            <th class="cell-header skip-border" align="right" style="text-align:right;padding-right:20px">
+                                TBD<%#=number_to_currency(@order.full_tax)%>
+                            </th> 
+                        </tr>
+                        <%  if(not @order.coupon_value==0) then%> 
+                          <tr>
+                              <th colspan="4" align="right">
+                                  Coupon: <%=@order.coupon_description.html_safe%>
+                              </th>
+                              <th align="right" style="padding-right: 15px;">
+                                  -<%=number_to_currency(@order.coupon_value)%>
+                              </th> 
+                          </tr>
+                        <% end %>
+
+                        <%  if( @order.store_wide_sale.to_s.to_i > 0) then%> 
+                          <tr>
+                              <th colspan="4" align="right">
+                                  Store Wide Sale (<%=@order.calc_percent_store_wide_sale %> % off)
+                              </th>
+                              <th align="right" style="padding-right: 15px;">
+                                  -<%=number_to_currency(@order.store_wide_sale)%>
+                              </th> 
+                          </tr>
+
+                        <% end %>
+
+                        <tr>
+                            <th> </th>
+                            <th class="cell-header skip-fill" style="text-align:right;" colspan="3" align="right">
+                                Current Total:
+                            </th>
+                            <th class="cell-header skip-fill skip-border" style="text-align:right;padding-right:20px">
+                                <%=number_to_currency(@order.grand_total_price)%>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </td>
+        </tr>
+        
+
+        <tr>
+            <td colspan="2" align="center">
+                 <div class="signature-line" style="text-align:right;  color: black; font-weight:bold;" ><b> Thank you for your order!</b></div></br>
+                 <div class="signature-line" style="text-align:right;  color: gray; font-weight:bold;" ><b> -Laurie Caccavo</b></div></br>
+
+            </td>
+        </tr>
+    </tbody>
+
+</table>
