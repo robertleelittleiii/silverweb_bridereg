@@ -130,7 +130,7 @@
                         <%  @order.order_items.each do |order_item| %>
 
 
-                          <tr class="<%= cycle('odd gradeA', 'even gradeA')%> shipping-item-row"  style = "cursor:pointer">
+                          <tr class="<%#= cycle('odd gradeA', 'even gradeA')%> shipping-item-row"  style = "cursor:pointer">
                               <td class="cell-format-img" align="center" width="54">
                                   <%= image_tag(image_url(order_item.product.pictures.first.image_url(:brid_reg_list_square).to_s),:border=>"0", :width=>"100", :height=>"100",:style=>"border:1px dotted black;") rescue image_tag(image_url("empty_s.jpg"),:border=>"0", :width=>"40", :height=>"50") %>
                               </td>

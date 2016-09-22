@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     match "/site/update_cart_item" => "site#update_cart_item", via: :put
     match "/site/update_session" => "site#update_session", via: :put
     match "/site/find_bride" => "site#find_bride", via: :get
+    match "/site/bride_active" => "site#bride_active", via: :get
 
   
 end

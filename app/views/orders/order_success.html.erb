@@ -56,13 +56,13 @@
 
 
             <div id="invoice-tools">
-                <div id="invoice-tools-title"> Thank you <br> for your Order!! </div>
+                <div id="invoice-tools-title"> Thank you <br> for your order!! </div>
                 <div id="invoice-tools-body">
-                    If you want to get a PDF version of your invoice for your records please click on the PDF icon below:</br>
-                    <center><%= link_to image_tag("interface/pdf.png",{:width=>"60px"}), {:action=>:invoice_slip, :format=>"pdf", :id=>@order.id},{} %></center>
+                    Click on the icon below to receive a PDF version of your order:</br>
                     </br>
-                    You can check the status of your order anytime by logging in to our site and clicking on the "Orders" tab or if you wish to go there now then</br></br>
-                    <center><%= link_to "Click Here", {:controller=>:orders, :action=>:user_orders}, {:class=>"navigation-link"}%></center>
+                    </br>
+                    </br>
+                    <center><%= link_to image_tag("interface/pdf.png",{:width=>"60px"}), {:action=>:invoice_slip, :format=>"pdf", :id=>@order.id},{} %></center>
                 </div>
             </div>
         </div>
@@ -72,9 +72,9 @@
         <%=display_html(@page.body) rescue ("Page '#{@page_title}' not found in system.")%>
     </div>
         <div class="nav-cart-bottom"> 
-            <div class="nav-cart-left bridalreg-button">
-                <%=link_to "<< Back to Shopping" ,session[:last_catetory], {:class=>"navigation-link "} %>
-            </div>
+            <%#*<div class="nav-cart-left bridalreg-button">%>
+                <%#=link_to "<< Back to gifts" ,session[:last_catetory], {:class=>"navigation-link "} %>
+            <%#*</div>%>
 
             <div class="nav-cart-right bridalreg-button">
                 <%= link_to "Complete!",{:controller=>:site, :action=>:index} ,{:class => "navigation-link"} %>

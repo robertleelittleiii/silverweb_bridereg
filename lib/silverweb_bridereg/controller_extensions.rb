@@ -47,6 +47,17 @@ module SilverwebBridereg
       module InstanceMethods
         
       
+        def bride_active
+          returnval="false"
+          if session[:user_id] then
+            user=User.find(session[:user_id])
+            if user.roles.detect{|role|(role.name=="Bride")} then
+              returnval="true"
+            end
+          end
+          render :json => { "bride_active"=>returnval }
+        end
+  
         #       before_filter :find_cart, :except => :empty_cart
 
         def show_my_gifts

@@ -17,6 +17,10 @@
   <%#= link_to image_tag("buynow.jpg"), @cart.standard_checkout(url_for(:controller=>:store, :action=>:store_list, :only_path=>false), url_for(:controller=>:orders, :action=>:new , :only_path=>false)) %>
 
       <div class="nav-cart-bottom"> 
+           <div class="nav-cart-left bridalreg-button">
+          <%=link_to "<< Back to wish list" ,{:action=>:show_gifts, :controller=>:site, :id=>@cart.bride.first.id}, {:class=>"navigation-link"} %>
+        </div>
+          
         <div class="nav-cart-left bridalreg-button">
           <%=link_to "Cancel Order" ,{:action => :empty_cart, :controller=>:site}, {:class=>"navigation-link"} %>
         </div>
