@@ -1,9 +1,9 @@
  <div id="cart-price">
- <%=link_to(number_to_currency(@cart.total_price).to_s ,{:controller=>:site, :action=>:check_out}, {:class=>"sites-system-link shopping-cart cart-text"})%>
+ <%=link_to(number_to_currency(@cart.total_price).to_s ,{:controller=>:order_management, :action=>:complete_order}, {:class=>"sites-system-link shopping-cart cart-text validate-login"})%>
  </div> 
 
 <%#=link_to("my bag" ,{:controller=>:site, :action=>:check_out}, {:class=>"sites-system-link shopping-cart cart-text"})%>
  
  <div id="shopping-cart-info-text" class="small">
- <%=link_to( @cart.total_items.to_s , {:controller=>:site, :action=>:check_out}, {:class=>"sites-system-link shopping-cart cart-text"})%>
+ <%=link_to( @cart.total_items.to_s , {:controller=>:order_management, :action=>:complete_order}, {:class=>"sites-system-link shopping-cart cart-text validate-login"})%>
  </div>

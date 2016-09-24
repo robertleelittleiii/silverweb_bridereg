@@ -38,8 +38,30 @@ function site_show_gifts_callDocumentReady() {
         //bindProductMenu();
     }
     bestInPlaceCallbackInits();
+    
+    intercept_click();
 }
-;
+
+function validate_login(url_to_goto) {
+    if ($("div#logged-in").text() == "true") {
+        window.location = url_to_goto;
+        return(false);
+    }
+    else {
+        loadLoginBox(url_to_goto);
+        return(true);
+    }
+
+}
+
+function intercept_click() {
+    $("a.validate-login").click(function (event){
+        event.stopPropagation();
+        validate_login($(this).attr('href'));
+        return false;
+    });
+}
+
 function updateShoppingCartView() {
     $.ajax({
         url: "/site/get_shopping_cart_info",

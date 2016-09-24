@@ -1,10 +1,10 @@
-<% if is_user_loggedin? and is_user_customer? %>
+<%# if is_user_loggedin? and is_user_customer? %>
 
   <div id="shopping-cart-image">
-      <%= link_to((image_tag("site/bag.png", :border=>"0", :align=>"center", :width=>"26px", :id=>"fb-logo-s")).html_safe, {:controller=>:order_management, :action=>:complete_order}, {:class=>"sites-system-link shopping-cart cart-text"})%>
+      <%= link_to((image_tag("site/bag.png", :border=>"0", :align=>"center", :width=>"26px", :id=>"fb-logo-s")).html_safe, {:controller=>:order_management, :action=>:complete_order}, {:class=>"validate-login sites-system-link shopping-cart cart-text"})%>
   <%# :controller=>:order_management, :action=>:complete_order %> </div>
   <div id="shopping-cart-info">
       <%=render :partial=>"/site/shopping_cart_info.html" %> 
   </div>
 
-<% end %>
+<%# end %>
