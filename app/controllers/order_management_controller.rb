@@ -12,10 +12,10 @@ class OrderManagementController < ApplicationController
       @cart.update_product(@cart_item.product_detail, params[:cart_item][:quantity].to_i)
     
     rescue Exception => e
-          message_json = JSON.parse(e.message)
-          puts(message_json)
-          @return_quantity = message_json["max_value"].to_s
-          @flash_message = "Requested amount exceeded inventory, set to max available."
+      message_json = JSON.parse(e.message)
+      puts(message_json)
+      @return_quantity = message_json["max_value"].to_s
+      @flash_message = "Requested amount exceeded inventory, set to max available."
     end
 
     # @cart_item.quantity = params[:cart_item][:quantity].to_i
@@ -32,6 +32,13 @@ class OrderManagementController < ApplicationController
     end
   end
   
+  
+   def get_cart_contents 
+          find_cart
+          @checkout_cart = @cart
+          render :partial => "build_product_item.html" , :collection => @checkout_cart.get_cart_products
+        end
+        
   def order_page 
     @product = Product.find(params[:product_id])
     
@@ -122,7 +129,7 @@ class OrderManagementController < ApplicationController
     @product = Product.find(params[:product_id])
     find_cart
     
- respond_to do |format|
+    respond_to do |format|
       format.html { render(partial: "build_order_product_summary")}
       format.json { render json: @product}
     end
@@ -131,7 +138,7 @@ class OrderManagementController < ApplicationController
 
   
   
-    def enter_order
+  def enter_order
     $hostfull = request.protocol + request.host_with_port
 
     @user = User.find_by_id(session[:user_id])
@@ -179,30 +186,30 @@ class OrderManagementController < ApplicationController
       
       if @cart.total_price > 0 then
         if @order.save
-            @order.transactions.create!(:action => "orderd", :amount => @order.price_in_cents, :response => ActiveMerchant::Billing::Response.new(true,"Order Created"))
-            @order.reduce_inventory($hostfull)
+          @order.transactions.create!(:action => "orderd", :amount => @order.price_in_cents, :response => ActiveMerchant::Billing::Response.new(true,"Order Created"))
+          @order.reduce_inventory($hostfull)
             
-            if  not Settings.order_notification then
-              UserNotifier.order_notification(@order, @user, $hostfull).deliver
-            else
-              UserNotifier.order_notification_as_invoice(@order, @user, $hostfull).deliver
-            end
+          if  not Settings.order_notification then
+            UserNotifier.order_notification(@order, @user, $hostfull).deliver
+          else
+            UserNotifier.order_notification_as_invoice(@order, @user, $hostfull).deliver
+          end
             
-            #  if there is a coupon, make a record that it was used.
-            if not @cart.coupon_code.blank? then
-              @coupon = Coupon.where(coupon_code: @cart.coupon_code).first
-              @coupon_used = CouponUsage.create(user_id: @user.id, coupon_id: @coupon.id)
-              @coupon.save
-            end
+          #  if there is a coupon, make a record that it was used.
+          if not @cart.coupon_code.blank? then
+            @coupon = Coupon.where(coupon_code: @cart.coupon_code).first
+            @coupon_used = CouponUsage.create(user_id: @user.id, coupon_id: @coupon.id)
+            @coupon.save
+          end
 
-            empty_cart_no_redirect
+          empty_cart_no_redirect
             
-            redirect_controller = :orders
-            redirect_action = :order_success
-            puts("****************** Purchase Success  ************")
+          redirect_controller = :orders
+          redirect_action = :order_success
+          puts("****************** Purchase Success  ************")
     
-            purchase_success = true              # return
-            # format.html {render :action => "order_success"}
+          purchase_success = true              # return
+          # format.html {render :action => "order_success"}
          
           #  format.html { redirect_to @order, :notice=>"Order was successfully created." }
           #  format.json { render :json=>@order, :status=>:created, :location=>@order }
@@ -234,6 +241,19 @@ class OrderManagementController < ApplicationController
     end
   end
 
+  def delete_cart_item
+    find_cart
+    @current_item_counter=params[:current_item]
+    @current_item=@cart.items.delete_at(@current_item_counter.to_i)
+    @cart.save
+
+    respond_to do |format|
+      format.json  { head :ok }
+      format.html {render :nothing=>true}
+    end
+  end
+        
+  
   def order_success 
     @page_title = "order success"
     @order = Order.find(params[:id])
@@ -261,14 +281,14 @@ class OrderManagementController < ApplicationController
   
   private 
   
-   def order_params
+  def order_params
     params[:order].permit("user_id", "credit_card_type", "credit_card_expires", "ip_address", "shipped", "shipped_date", "ship_first_name", "ship_last_name", "ship_street_1", "ship_street_2", "ship_city", "ship_state", "ship_zip", "bill_first_name", "bill_last_name", "bill_street_1", "bill_street_2", "bill_city", "bill_state", "bill_zip", "created_at", "updated_at", "shipping_cost", "sales_tax", "shipping_method", "coupon_description", "coupon_value", "store_wide_sale","cc_number", "cc_verification", "cc_expires(1i)", "cc_expires(2i)", "cc_expires(3i)", "express_token")
   end
   
-    def empty_cart_no_redirect
-          find_cart
-          @cart.delete
-          session[:cart] = nil
-          find_cart
-        end
+  def empty_cart_no_redirect
+    find_cart
+    @cart.delete
+    session[:cart] = nil
+    find_cart
+  end
 end

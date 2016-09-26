@@ -38,16 +38,49 @@ function site_show_gifts_callDocumentReady() {
         //bindProductMenu();
     }
     bestInPlaceCallbackInits();
-    
+
     intercept_click();
+    show_cart();
+    
+}
+
+
+$( window ).resize(function() {
+    
+   // show_cart();
+    // console.log("resized!");
+})
+
+
+function show_cart() {
+
+    if ($("div#content.site.show_gifts").length) {
+        if (($("#shopping-cart.small").length > 0) & (window.innerWidth <= 524)) {
+            $("#shopping-cart.small").show();
+        }
+        else
+        {
+               $("#shopping-cart.small").hide();
+
+        }
+        if (($("#shopping-cart.normal").length > 0) & (window.innerWidth > 524)) {
+            $("#shopping-cart.normal").show();
+
+        }
+        else
+        {
+             $("#shopping-cart.normal").hide();
+
+        }
+    }
+
 }
 
 function validate_login(url_to_goto) {
-    if ($("div#logged-in").text() == "true") {
+        if ($("div#logged-in").first().text() == "true") {
         window.location = url_to_goto;
         return(false);
-    }
-    else {
+    } else {
         loadLoginBox(url_to_goto);
         return(true);
     }
@@ -55,7 +88,7 @@ function validate_login(url_to_goto) {
 }
 
 function intercept_click() {
-    $("a.validate-login").click(function (event){
+    $("a.validate-login").click(function (event) {
         event.stopPropagation();
         validate_login($(this).attr('href'));
         return false;

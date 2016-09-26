@@ -142,7 +142,7 @@ module SilverwebBridereg
             format.xml  { render :xml => @gifts }
           end
         end
-        
+         
         def update_cart_item
           @cart=Cart.get_cart("cart"+session[:session_id], session[:user_id]) rescue  Rails.cache.write("cart"+session[:session_id],{}, :expires_in => 15.minutes)
           @product = Product.find(params[:product])

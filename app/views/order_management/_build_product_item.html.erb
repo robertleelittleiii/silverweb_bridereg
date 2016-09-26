@@ -28,6 +28,10 @@
 
                     <%=build_product_item.product_description.html_safe %><br> 
                 </div>
+                
+                <div class="delete-item">
+                    <%=link_to("Delete",{:action=>'delete_cart_item', :current_item=>build_product_item_counter }, {:remote=>true, :class=>"remove-product"})%>
+                </div>
             </div>
         </div>
         <div class="table-cell product-upc-section">

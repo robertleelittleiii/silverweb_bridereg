@@ -1,21 +1,21 @@
 
 <div id="page-title">
-        Your Order
-    </div>
+    Your Order
+</div>
 
-    <div id="bride-info">
-       <%=bride_edit_div(@cart.bride.first) %>
-       <div id="first-name" class="bride-info-item">
-            <%=@cart.bride.first.user.user_attribute.first_name%>
-        </div>
-        <div id="last-name" class="bride-info-item">
-            <%=@cart.bride.first.user.user_attribute.last_name%>
-
-        </div>
-        <div id="wedding-date" class="bride-info-item">
-            <%=@cart.bride.first.wedding_date.strftime("%m/%d/%Y") %>
-        </div>
+<div id="bride-info">
+    <%=bride_edit_div(@cart.bride.first) %>
+    <div id="first-name" class="bride-info-item">
+        <%=@cart.bride.first.user.user_attribute.first_name%>
     </div>
+    <div id="last-name" class="bride-info-item">
+        <%=@cart.bride.first.user.user_attribute.last_name%>
+
+    </div>
+    <div id="wedding-date" class="bride-info-item">
+        <%=@cart.bride.first.wedding_date.strftime("%m/%d/%Y") %>
+    </div>
+</div>
 
 
 <div id="cart-contents">
@@ -23,57 +23,59 @@
         <div id="item-description" class="table-header">
             Description
         </div>
-         <div id="item-upc" class="table-header">
+        <div id="item-upc" class="table-header">
             UPC
         </div>
-          <div id="item-quantity" class="table-header">
-           Quantity
+        <div id="item-quantity" class="table-header">
+            Quantity
         </div>
-          <div id="item-price" class="table-header">
+        <div id="item-price" class="table-header">
             Price
         </div>
     </div>
-    <%#=build_order.get_cart_products.inspect%>
-  <%= render(:partial => "build_product_item" , :collection => build_order.get_cart_products) %>
+<%#=build_order.get_cart_products.inspect%>
+    <div id="cart-body">
+        <%= render(:partial => "build_product_item" , :collection => build_order.get_cart_products) %>
+    </div>
     <div id="cart-footer">
         <div id="item-description-bottom" class="table-footer">
-            
+
         </div>
-         <div id="current-subtotal-title" class="table-footer">
+        <div id="current-subtotal-title" class="table-footer">
             Current Subtotal
         </div>
-          <div id="current-subtotal" class="table-footer">
-                    <%= render :partial=>"order_summary_body.html" , :locals=>{:build_order=>@build_order} %>
+        <div id="current-subtotal" class="table-footer">
+            <%= render :partial=>"order_summary_body.html" , :locals=>{:build_order=>@build_order} %>
         </div>
     </div>
 </div>
 
 
 <div class="cart-summary-section">
-  <!-- <div class="cart-shipping">
-    <div class="cart-shipping-header cart-header-font ">
-      Shipping
-    </div>
-    <div class="cart-shipping-body">
-      <%#= render :partial=>"shipping_tool.html", :locals=>{:build_order=>@build_order, :shipping_methods=>@shipping_methods} %>
-    </div> 
-  -->
-  </div>
+    <!-- <div class="cart-shipping">
+      <div class="cart-shipping-header cart-header-font ">
+        Shipping
+      </div>
+      <div class="cart-shipping-body">
+<%#= render :partial=>"shipping_tool.html", :locals=>{:build_order=>@build_order, :shipping_methods=>@shipping_methods} %>
+      </div> 
+    -->
+</div>
 
-  <div class="cart-summary">
-          <%@build_order = build_order %>
-   <%  if Coupon.active then %>
-    <div class="cart-header-font cart-coupon-header">
-      Coupon Code
-    </div>
-    <div class="cart-coupon-code">
-      <p>
-        <%=editablefieldcreate("coupon_code", @build_order,"Enter Code",{:path=>"cart_update"})%>
-      </p>
-    </div>
+<div class="cart-summary">
+    <%@build_order = build_order %>
+    <%  if Coupon.active then %>
+      <div class="cart-header-font cart-coupon-header">
+          Coupon Code
+      </div>
+      <div class="cart-coupon-code">
+          <p>
+              <%=editablefieldcreate("coupon_code", @build_order,"Enter Code",{:path=>"cart_update"})%>
+          </p>
+      </div>
     <% end %>
-   <!-- <div class="cart-summary-header cart-header-font "> 
-      Summary
-    </div> -->
-   
-  </div>
+    <!-- <div class="cart-summary-header cart-header-font "> 
+       Summary
+     </div> -->
+
+</div>

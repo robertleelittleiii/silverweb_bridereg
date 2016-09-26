@@ -86,6 +86,7 @@ div.product-image img {
     height: auto;
     width: 175px;
     margin-bottom: -4px;
+
 }
 
 div.product-image {
@@ -96,6 +97,14 @@ div.product-image {
     box-shadow: 0px 0px 20px white;
     margin-bottom: 20px;
     background-color: white;
+    margin-bottom: 35px;
+
+}
+
+div.product-data-float div.delete-item {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;    
 }
 
 
