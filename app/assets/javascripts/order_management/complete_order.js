@@ -65,10 +65,12 @@ function updateShoppingCartSummary() {
             } else
             {
                 $("div#current-subtotal").html(data);
+                var bride_id = $("div#bride-id").first().text();
+                
                 if (parseFloat($("div#current-subtotal").text().replace(/\$|,/g, '')) == 0)
                 {
                     //alert("Cart is empty");
-                    window.location = "/site?alert=The%20cart%20is%20now%20empty.";
+                    window.location = "/site/show_gifts?id=" + bride_id + "&alert=The%20cart%20is%20now%20empty.";
                 }
             }
         }
