@@ -22,11 +22,11 @@
         </div>
           
         <div class="nav-cart-left bridalreg-button">
-          <%=link_to "Cancel Order" ,{:action => :empty_cart, :controller=>:site}, {:class=>"navigation-link"} %>
+         <%=link_to "Cancel Order" ,{:action => :empty_cart, :controller=>:site, :redirect=>"site:show_gifts", :id=>@cart.bride.first.id}, {:class=>"navigation-link"} %>
         </div>
 
        <div class="nav-cart-right bridalreg-button">
-          <%=link_to "Complete Order >>" ,{:action => :enter_order}, {:class=>"navigation-link validate-login continue-link"} %>
+          <%=link_to "Reserve Items >>" ,{:action => :enter_order}, {:class=>"navigation-link validate-login continue-link"} %>
        </div>
 
       </div>

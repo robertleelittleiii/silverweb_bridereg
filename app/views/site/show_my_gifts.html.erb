@@ -52,7 +52,7 @@
                             <%= image_tag(gift.product.pictures.where(:active_flag=>true)[0].blank? ? "empty_s.jpg" : gift.product.pictures.where(:active_flag=>true)[0].image_url(:brid_reg_list_square).to_s,:class=>"gift-image") rescue "Server restart required" %>
                         </div>
                         <div class="gift-description">
-                            <%=gift.product.product_description%>
+                            <%=gift.product.product_description.html_safe%>
                         </div>
                         <div class="gift-price">
                             <%=number_to_currency(gift.product.msrp)%>

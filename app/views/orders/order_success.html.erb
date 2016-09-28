@@ -26,20 +26,20 @@
             <% end %>
 
         </div>
-<div id="bride-info">
-       <%=bride_edit_div(@order.bride) %>
-       <div id="first-name" class="bride-info-item">
-            <%=@order.bride.user.user_attribute.first_name%>
-        </div>
-        <div id="last-name" class="bride-info-item">
-            <%=@order.bride.user.user_attribute.last_name%>
+        <div id="bride-info">
+            <%=bride_edit_div(@order.bride) %>
+            <div id="first-name" class="bride-info-item">
+                <%=@order.bride.user.user_attribute.first_name%>
+            </div>
+            <div id="last-name" class="bride-info-item">
+                <%=@order.bride.user.user_attribute.last_name%>
 
+            </div>
+            <div id="wedding-date" class="bride-info-item">
+                <%=@order.bride.wedding_date.strftime("%m/%d/%Y") %>
+            </div>
         </div>
-        <div id="wedding-date" class="bride-info-item">
-            <%=@order.bride.wedding_date.strftime("%m/%d/%Y") %>
-        </div>
-    </div>
-    
+
 
 
 
@@ -48,9 +48,9 @@
             <%= link_to "Zoom Invoice","#", {:href=>"javascript:void();",:onclick=>"return false;", :id=>"zoom-invoice", :class=>"navigation-link"}%>
 
             <div id="frame-wrapper"> 
-            <div id="invoice-frame" class="shrink">
-                <iframe id="invoice-iframe" class="preview" src="<%= url_for(:controller=> :orders, :action=>:invoice_slip, :id=>@order.id, :only_path=>true)%>" align="left" width="1024" height="1000" ></iframe>
-            </div>
+                <div id="invoice-frame" class="shrink">
+                    <iframe id="invoice-iframe" class="preview" src="<%= url_for(:controller=> :orders, :action=>:invoice_slip, :id=>@order.id, :only_path=>true)%>" align="left" width="1024" height="1000" ></iframe>
+                </div>
             </div>
 <%#=render "invoice_report.html" %>
 
@@ -58,8 +58,10 @@
             <div id="invoice-tools">
                 <div id="invoice-tools-title"> Thank you <br> for your order!! </div>
                 <div id="invoice-tools-body">
-                    Click on the icon below to receive a PDF version of your order:</br>
-                    </br>
+
+                    <%=page_edit_div(@page) rescue ""%> 
+                    <%=display_html(@page.body)%>
+                   
                     </br>
                     </br>
                     <center><%= link_to image_tag("interface/pdf.png",{:width=>"60px"}), {:action=>:invoice_slip, :format=>"pdf", :id=>@order.id},{} %></center>
@@ -68,21 +70,20 @@
         </div>
 
         <hr>
-        <%=page_edit_div(@page) rescue ""%>
-        <%=display_html(@page.body) rescue ("Page '#{@page_title}' not found in system.")%>
-    </div>
-        <div class="nav-cart-bottom"> 
-            <%#*<div class="nav-cart-left bridalreg-button">%>
-                <%#=link_to "<< Back to gifts" ,session[:last_catetory], {:class=>"navigation-link "} %>
-            <%#*</div>%>
 
-            <div class="nav-cart-right bridalreg-button">
-                <%= link_to "Complete!",{:controller=>:site, :action=>:index} ,{:class => "navigation-link"} %>
+    </div>
+    <div class="nav-cart-bottom"> 
+<%#*<div class="nav-cart-left bridalreg-button">%>
+<%#=link_to "<< Back to gifts" ,session[:last_catetory], {:class=>"navigation-link "} %>
+<%#*</div>%>
+
+        <div class="nav-cart-right bridalreg-button">
+            <%= link_to "Complete!",{:controller=>:site, :action=>:index} ,{:class => "navigation-link"} %>
 
 <%#=link_to "Continue to Confirmation >>" ,{:action => :enter_order, :controller=>:orders}, {:class=>"navigation-link"} %>
-            </div>
-
         </div>
+
     </div>
+</div>
 
 </div>
