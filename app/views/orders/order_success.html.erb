@@ -60,8 +60,7 @@
                 <div id="invoice-tools-body">
 
                     <%=page_edit_div(@page) rescue ""%> 
-                    <%=display_html(@page.body)%>
-                   
+                    <%=display_html(@page.body) rescue ("Page '#{@page_title}' not found in system.")%>
                     </br>
                     </br>
                     <center><%= link_to image_tag("interface/pdf.png",{:width=>"60px"}), {:action=>:invoice_slip, :format=>"pdf", :id=>@order.id},{} %></center>
