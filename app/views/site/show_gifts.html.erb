@@ -2,6 +2,10 @@
     <div id="full-screen">false</div>
     <div id="admin-active"><%=  @admin_active=admin_active() || "" %></div>
     <div id="page_number"><%=@the_page%></div>
+    <div id="data-reload" class="hidden-item" 
+         data-page-params="/site/show_gifts?id=<%=@bride.id%>"
+         data-page-update="site_show_gifts_callDocumentReady" 
+         data-additional=""></div>
 </div>
 
 <div id="show-gifts-page">

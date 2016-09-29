@@ -42,7 +42,8 @@ function brideeditClickBinding(selector) {
                         //tinyMCE.editors[0].destroy();
                         $('#edit-bride').html("");
                         $('#edit-bride').dialog("destroy");
-                        
+                        update_content();
+
 
                     }
                 });

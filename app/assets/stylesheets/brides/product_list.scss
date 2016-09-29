@@ -211,6 +211,10 @@ div#quantity_reserved {
 
 div#gift-products div.gift-item {
     padding-bottom: 20px;
+    width: initial;
+    padding-left: inherit;
+    padding-right: inherit;
+    border: initial;
 }
 
 div#gift-products div.gift-item div.best_in_place:hover, #user_account .do_hover {
