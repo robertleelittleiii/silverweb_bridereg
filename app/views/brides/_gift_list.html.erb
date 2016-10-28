@@ -1,8 +1,11 @@
 
 <%# return if (not defined?(picture_list).nil?) %>
 <% @gifts = gift_list if @gifts.blank? %>
+<%= hidden_div_if((@gifts.empty?) , :id=>"gift-products") %>
 
 <% @gifts.order(:position).each do |gift| %>
-<% puts("---------->  gift.product: '#{gift.product.product_name}'") %>
-<%= render(:partial=>"gift_view.html" , :locals=>{:gift=>gift})%>
+  <% puts("---------->  gift.product: '#{gift.product.product_name}'") %>
+  <%= render(:partial=>"gift_view.html" , :locals=>{:gift=>gift})%>
 <% end if not @gifts.blank?%>
+
+<%="</div>".html_safe if !@gifts.empty? %>

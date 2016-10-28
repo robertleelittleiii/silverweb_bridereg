@@ -4,13 +4,14 @@
 
 
 </div>
-<div class="giftsection">
+<div id="gift-section" class="giftsection back-office-refresh-element" data-update="updateGiftList">
                  
-          <%= hidden_div_if((@bride.gift_registries.empty?) , :id=>"gift-products") %>
+    
+          <%#= hidden_div_if((@bride.gift_registries.empty?) , :id=>"gift-products") %>
 
           <%= render(:partial => "gift_list", :object => @bride.gift_registries) %>
           
 
-          <%="</div>".html_safe %>
+          <%#="</div>".html_safe %>
 
       </div> 

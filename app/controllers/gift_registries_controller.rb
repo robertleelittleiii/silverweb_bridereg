@@ -48,7 +48,7 @@ def create_empty_record
   
     product_details = ProductDetail.new
     product_details.sku_active=true
-    product_details.units_in_stock = 10
+    product_details.units_in_stock = 99999
     
     @gift_registry.product.product_details <<  product_details
     

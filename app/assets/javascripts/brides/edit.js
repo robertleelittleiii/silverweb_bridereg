@@ -215,6 +215,29 @@ function updateGift() {
 
 }
 
+
+function updateGiftList() {
+
+    //  alert("color changed");
+    var bride_id = $("div#attr-bride #bride-id").text();
+    $("body").css("cursor", "progress");
+// $("#loader_progress").show();
+
+    $.post('/brides/render_gift_list?id=' + bride_id, function (data)
+    {
+        $('div#gift-section').html(data);
+        $("body").css("cursor", "default");
+
+        // $("#loader_progress").hide();
+        bindGiftSort();
+        bindDeleteGift();
+        $(".best_in_place").best_in_place();
+        enableProductEdit();
+
+    });
+
+}
+
 function bindNewProduct() {
 
     $('a#new-product').unbind().bind('ajax:beforeSend', function (e, xhr, settings) {

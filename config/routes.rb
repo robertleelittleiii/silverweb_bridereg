@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       post "update_gift_list"
       post "render_gift_section"
       post "update_gift_order"
+      post "render_gift_list"
     end
   end
   

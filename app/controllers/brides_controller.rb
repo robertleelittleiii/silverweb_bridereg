@@ -1,5 +1,5 @@
 class BridesController < ApplicationController
-  before_action :set_bride, only: [:show, :edit, :update, :destroy, :update_gift_list, :render_gift_section]
+  before_action :set_bride, only: [:show, :edit, :update, :destroy, :update_gift_list, :render_gift_section, :render_gift_list]
 
   # GET /brides
   def index
@@ -93,13 +93,13 @@ class BridesController < ApplicationController
 
   def update_gift_list
     @product = Product.find(params[:product_id])
-    
+
     check_for_duplicate = GiftRegistry.where(:product_id=>params[:product_id]).where(:bride_id=>params[:id])
     if check_for_duplicate.length == 0 then
       @gift_product = GiftRegistry.new
       @gift_product.product_id=params[:product_id]
-       @gift_registry.quantity_reserved = 0
-    @gift_registry.quantity_requested = 0
+      @gift_product.quantity_reserved = 0
+      @gift_product.quantity_requested = 0
       @gift_product.position = 999
       @gift_product.save
       @bride.gift_registries << @gift_product
@@ -116,6 +116,13 @@ class BridesController < ApplicationController
   
     render(partial: "gift_section")
     
+  end
+  
+    def render_gift_list
+    @gifts = @bride.gift_registries
+    
+    render(partial: "gift_list")
+   
   end
     
   def update_gift_order
@@ -160,7 +167,7 @@ class BridesController < ApplicationController
     when 0
       return "brides.id"
     when 1
-      return "brides.users.user_attributes.first_name"
+      return "user_attributes.first_name"
     else
       return "brides.wedding_date"
     end
