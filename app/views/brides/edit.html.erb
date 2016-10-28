@@ -2,7 +2,7 @@
     <div id="as_window"><%=params[:request_type]=="window"%></div>
     <div id="dialog-height">650</div>
     <div id="dialog-width">1050</div>
-    <div id="dialog-name">Edit Bride</div>
+    <div id="dialog-name">Edit Bride (<%=@bride.user.user_attribute.first_name%> <%=@bride.user.user_attribute.last_name%> )</div>
 </div>
 
 <%=  bride_info(@bride) %>
