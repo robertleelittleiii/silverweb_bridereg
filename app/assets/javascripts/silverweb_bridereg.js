@@ -9,6 +9,7 @@
 $(document).ready(function () {
 
     enableBrideMyAccount();
+    intercept_click();
 
 });
 
@@ -37,4 +38,24 @@ function enableBrideMyAccount() {
 
     }
 
+}
+
+function validate_login(url_to_goto) {
+    if ($($("div#logged-in")[0]).text() == "true") {
+        window.location = url_to_goto;
+        return(false);
+    }
+    else {
+        loadLoginBox(url_to_goto);
+        return(true);
+    }
+
+}
+
+function intercept_click() {
+    $("a.validate-login").click(function (event){
+        event.stopPropagation();
+        validate_login($(this).attr('href'));
+        return false;
+    });
 }
