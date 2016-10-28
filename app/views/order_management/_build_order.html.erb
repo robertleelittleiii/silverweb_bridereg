@@ -4,6 +4,7 @@
 </div>
 
 <div id="bride-info">
+    <div class='hidden-item' id='bride-id'><%=@cart.bride.first.id%></div>
     <%=bride_edit_div(@cart.bride.first) %>
     <div id="first-name" class="bride-info-item">
         <%=@cart.bride.first.user.user_attribute.first_name%>
