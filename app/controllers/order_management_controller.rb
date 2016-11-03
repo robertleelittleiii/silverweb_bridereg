@@ -92,9 +92,9 @@ class OrderManagementController < ApplicationController
     
     @shipping_methods = [["Ground",0] , ["2 Day",1], ["Next Day",2], ["Pick Up Store",3]]
           
-    if @cart.items.empty?
+    if @cart.items.empty? or @cart.bride.nil? then
       redirect_to(:controller => "site", :action => "index")
-    else
+   else
       #@cart.hide
       #@cart.set_shipping(@cart.calc_shipping)
       #@order = Order.new

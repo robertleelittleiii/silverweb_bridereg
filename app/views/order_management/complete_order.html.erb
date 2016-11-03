@@ -18,11 +18,11 @@
 
       <div class="nav-cart-bottom"> 
            <div class="nav-cart-left bridalreg-button">
-          <%=link_to "<< Back to wish list" ,{:action=>:show_gifts, :controller=>:site, :id=>@cart.bride.first.id}, {:class=>"navigation-link"} %>
+          <%=link_to "<< Back to wish list" ,{:action=>:show_gifts, :controller=>:site, :id=>@cart.bride.id}, {:class=>"navigation-link"} %>
         </div>
           
         <div class="nav-cart-left bridalreg-button">
-         <%=link_to "Cancel Order" ,{:action => :empty_cart, :controller=>:site, :redirect=>"site:show_gifts", :id=>@cart.bride.first.id}, {:class=>"navigation-link"} %>
+         <%=link_to "Cancel Order" ,{:action => :empty_cart, :controller=>:site, :redirect=>"site:show_gifts", :id=>@cart.bride.id}, {:class=>"navigation-link"} %>
         </div>
 
        <div class="nav-cart-right bridalreg-button">

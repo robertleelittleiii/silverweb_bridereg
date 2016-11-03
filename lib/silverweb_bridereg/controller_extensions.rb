@@ -212,15 +212,17 @@ module SilverwebBridereg
       end 
       
       def find_bride
-        @bride = Bride.eager_load(:user).eager_load(:user=>:user_attribute).where("user_attributes.first_name like ?","%" + session[:bride_first_name] + "%").where("user_attributes.last_name like ?","%"+session[:bride_last_name]+"%").where("wedding_date = ?",Date.parse(session[:bride_wedding_date]).to_s(:db)) rescue {}
+        @bride = Bride.eager_load(:user).eager_load(:user=>:user_attribute).where("user_attributes.first_name like ?","" + session[:bride_first_name] + "%").where("user_attributes.last_name like ?",""+session[:bride_last_name]+"%").where("wedding_date = ?",Date.parse(session[:bride_wedding_date]).to_s(:db)) rescue {}
         @cart.delete rescue ""
         
         @cart=Cart.get_cart("cart"+session[:session_id], session[:user_id]) rescue  Rails.cache.write("cart"+session[:session_id],{}, :expires_in => 15.minutes)
         
-        @cart.bride = @bride if !@bride.nil?
+        @cart.bride = @bride.first if !@bride.first.nil?
         @cart.save
 
         found = !@bride.empty?
+        puts (found) 
+        puts (@bride.inspect)
         bride_id = @bride.first.id rescue 0
         message = found ? "Bride was found, click wishlist button to continue." : "Bride not fouund! Please double check first and last name and wedding date."
         respond_to do |format|
