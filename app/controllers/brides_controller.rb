@@ -7,6 +7,9 @@ class BridesController < ApplicationController
   end
 
   # GET /brides/1
+  #
+  #
+  
   def show
   end
 
