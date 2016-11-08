@@ -72,7 +72,7 @@ class OrderManagementController < ApplicationController
       puts(product_size)
       @product_detail = @product.product_details.where(size: product_size).where(color:product_color).first
       begin 
-        @cart.add_product(@product, @product_detail, color_size_item.second);
+        @cart.add_product(@product, @product_detail, color_size_item.second, params[:gift_id]);
       rescue 
         @flash_message = @flash_message +  " #{product_color}:#{product_size}, "
       end
@@ -282,7 +282,7 @@ class OrderManagementController < ApplicationController
   private 
   
   def order_params
-    params[:order].permit("user_id", "credit_card_type", "credit_card_expires", "ip_address", "shipped", "shipped_date", "ship_first_name", "ship_last_name", "ship_street_1", "ship_street_2", "ship_city", "ship_state", "ship_zip", "bill_first_name", "bill_last_name", "bill_street_1", "bill_street_2", "bill_city", "bill_state", "bill_zip", "created_at", "updated_at", "shipping_cost", "sales_tax", "shipping_method", "coupon_description", "coupon_value", "store_wide_sale","cc_number", "cc_verification", "cc_expires(1i)", "cc_expires(2i)", "cc_expires(3i)", "express_token")
+    params[:order].permit("user_id", "credit_card_type", "credit_card_expires", "ip_address", "shipped", "shipped_date", "ship_first_name", "ship_last_name", "ship_street_1", "ship_street_2", "ship_city", "ship_state", "ship_zip", "bill_first_name", "bill_last_name", "bill_street_1", "bill_street_2", "bill_city", "bill_state", "bill_zip", "created_at", "updated_at", "shipping_cost", "sales_tax", "shipping_method", "coupon_description", "coupon_value", "store_wide_sale","cc_number", "cc_verification", "cc_expires(1i)", "cc_expires(2i)", "cc_expires(3i)", "express_token","bill_phone", "ship_phone")
   end
   
   def empty_cart_no_redirect

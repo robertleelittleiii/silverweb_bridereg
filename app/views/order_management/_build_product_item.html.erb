@@ -43,7 +43,7 @@
         <div class="table-cell product-quantity-section">
             <div class="product-data-float">
                 <%if(!@found_cart_item.blank? )then%>
-                  <%= editablefieldcreate('quantity', @found_cart_item,"0",{:path=>"/site/update_cart_item?product=#{@product.id}&gift=11&color=N/C&size=N/S" }) %>
+                  <%= editablefieldcreate('quantity', @found_cart_item,"0",{:path=>"/site/update_cart_item?product=#{@product.id}&gift=#{@found_cart_item.gift}&color=#{@product.product_details.first.color}&size=#{@product.product_details.first.size}" }) %>
                 <%else %>
                   n/a
                 <%end%>            </div>

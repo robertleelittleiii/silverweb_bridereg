@@ -72,7 +72,7 @@
                                     Reserve
                                 </div>
                                 <div class="field">
-                                    <%@found_cart_item = @cart.get_cart_items(gift.product)[counter] || CartItem.new(gift.product,gift.product.product_details.first, 0) %>
+                                    <%@found_cart_item = @cart.get_cart_items(gift.product)[counter] || CartItem.new(gift.product,gift.product.product_details.first, 0, gift.id) %>
                                     <%# =@found_cart_item = @cart.get_cart_item_color_size_product(gift.product,"n/a","n/a") || CartItem.new(gift.product,gift.product.product_details.first, 0)%>
 
                                     <%if(!@found_cart_item.blank? )then%>

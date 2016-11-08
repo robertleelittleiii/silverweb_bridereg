@@ -96,7 +96,62 @@ module SilverwebBridereg
           @bride
         end
         
+        def add_product(product, product_detail, quantity, gift)
+    
+          current_item = @items.find {|item| item.product_detail.id == product_detail.id}
+   
+
+          if current_item.blank? then
+            current_item = CartItem.new(product,product_detail, quantity, gift)
+           
+            @items << current_item
+
+            if quantity.to_i  > product_detail.units_in_stock then
+              current_item.quantity = product_detail.units_in_stock
+              self.save
+              raise("Exceeded inventory.")
+            end
+          else
+            projected_quantity = current_item.quantity + quantity.to_i
+            current_item.increment_quantity(quantity.to_i)
+            if projected_quantity  > product_detail.units_in_stock then
+              current_item.quantity = product_detail.units_in_stock
+              self.save
+              raise("Exceeded inventory.")
+            end
+          end
+
+          self.save
+          puts("current_item=> #{current_item.inspect}")
+          return(current_item)
+    
+        end
+  
         
+        
+      end    
+    end
+    
+    initializer "silverweb_bridereg.update_cartitem_model" do 
+      CartItem.class_eval do
+        attr_reader :gift
+        
+        def gift=(gift)
+          @gift=gift
+        end
+        
+        def gift
+          @gift
+        end
+        
+        def initialize(product, product_detail, quantity, gift)
+          puts("#{product.inspect}")
+          puts("#{product_detail.inspect}")
+          @product = product
+          @product_detail = product_detail
+          @quantity = quantity.to_i
+          @gift = gift
+        end
       end    
     end
     

@@ -172,7 +172,7 @@ module SilverwebBridereg
           end
           
           #if @cart_item.nil? then
-          @cart_item =  @cart.add_product(@product, @product.product_details.first, 0)
+          @cart_item =  @cart.add_product(@product, @product.product_details.first, 0, @gift.id)
           #else          
          
           begin 
